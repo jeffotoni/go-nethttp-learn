@@ -1,0 +1,26 @@
+# Go cache and local workspace
+.gocache/
+.gopath/
+
+# Build artifacts
+bin/
+dist/
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+
+# Coverage and logs
+.coverprofile
+coverage.out
+*.log
+
+# Editors and IDEs
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
