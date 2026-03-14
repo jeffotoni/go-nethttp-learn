@@ -1,21 +1,60 @@
-# net/http em Go - Do Básico ao Avançado
+# Domine o net/http em Go
+## Do Core HTTP à Arquitetura de APIs Profissionais
 
-Este repositório é um manual prático de `net/http` em Go com foco exclusivo em **server-side API**. A proposta é evoluir do básico ao avançado com exemplos pequenos, executáveis e organizados em sequência didática.
+![Go Version](https://img.shields.io/badge/Go-1.22%2B-00ADD8)
+![Status](https://img.shields.io/badge/status-em%20desenvolvimento-yellow)
 
-**O que já está coberto neste manual**
+Aprenda a construir APIs robustas usando apenas a biblioteca padrão do Go sem frameworks, sem dependências desnecessárias.
 
-| Bloco | O que você aprende |
-|---|---|
-| Contexto web | visão macro de Web Services, REST/RESTful e evolução do HTTP |
-| Fundamentos `net/http` | `http.Request`, `http.ResponseWriter`, `http.Handler`, `http.HandlerFunc` |
-| Servidor HTTP em Go | variações de `http.ListenAndServe`, `http.ServeMux` e `http.Server` |
-| Method pattern (Go 1.22+) | rotas como `"GET /rota"` e `"POST /rota"` |
-| API server na prática | padronização de resposta, status/erros, validação e health endpoints |
+## 🎯 Por que dominar o net/http?
 
-Este material foi desenvolvido por **Jefferson Otoni Lima (Jeffotoni)**, Engenheiro de Software Sênior e Arquiteto de Soluções.
-Com mais de **22 anos de experiência**, atua principalmente em APIs, arquitetura de software e ecossistema cloud-native, além de programação em diversas linguagens como Go, Rust, C, C++, Java, C#, Node.js,Deno, Bun, PHP, Perl, Python, Dart.
+> **"Frameworks devem ser uma escolha consciente, não uma dependência obrigatória."**
 
-A proposta central é dominar o **net/http** para que frameworks sejam uma escolha, não uma dependência.
+Este guia prático e progressivo oferece uma jornada do básico ao avançado no pacote `net/http`, combinando:
+- **Base teórica sólida** - O "porquê" antes do "como"
+- **Exemplos práticos** - Código minimalista e executável
+- **Progressão didática** - Cada conceito prepara para o próximo
+
+## Jornada de Aprendizado
+
+### 🏗️ Fase 1: Fundamentos Teóricos
+Contexto web, REST, evolução do HTTP - a base conceitual que sustenta sistemas backend modernos.
+
+### 🚀 Fase 2: Mãos no Código
+Exploração prática do net/http com exemplos progressivos e executáveis.
+
+### 🎯 Fase 3: Arquitetura de APIs
+Padrões de design, boas práticas e estruturação de projetos reais.
+
+## O que você vai aprender
+
+| Módulo | Conhecimento | Resultado Prático |
+|--------|--------------|-------------------|
+| 🌐 **Contexto Web** | Fundamentos de Web Services, REST e HTTP | Compreensão profunda do ecossistema |
+| ⚙️ **Core net/http** | `Request`, `ResponseWriter`, Handlers | Controle total sobre requisições |
+| 🖥️ **Servidor HTTP** | ListenAndServe, ServeMux, Server customizado | Servidores configuráveis e robustos |
+| 🛣️ **Rotas (Go 1.22+)** | Method pattern e path parameters | Rotas elegantes e semanticas |
+| 🏗️ **API em Produção** | Padronização, erros, validação, health checks | APIs prontas para o mundo real |
+
+## 📋 Para quem é este material
+
+- Desenvolvedores Go que querem dominar a biblioteca padrão
+- Quem busca construir APIs sem dependências pesadas
+- Profissionais que valorizam performance e simplicidade
+
+**Pré-requisitos:** Conhecimentos básicos de Go (variáveis, funções, structs) e familiaridade com conceitos web.
+
+**Formato:** Exemplos minimalistas, executáveis e progressivos - cada código ilustra exatamente um conceito.
+
+---
+
+## 👨‍💻 Sobre o Autor
+
+**Jefferson Otoni Lima [Jeffotoni](https://jeffotoni.com)** - Engenheiro de Software Sênior e Arquiteto de Soluções com **+22 anos de experiência** em desenvolvimento de software.
+
+Especialista em arquiteturas cloud-native e APIs de alta performance, transita fluentemente por múltiplas linguagens (Go, Rust, C, C++, Java, entre outras) com um olhar clínico para design de sistemas robustos e escaláveis.
+
+**Filosofia de ensino:** Teoria sem prática é vaga; prática sem teoria é cega. Cada conceito aqui é acompanhado de exemplos reais e executáveis.
 
 **Recursos oficiais do manual**
 

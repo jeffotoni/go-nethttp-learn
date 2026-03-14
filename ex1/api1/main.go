@@ -1,6 +1,7 @@
 package main
 
 import (
+	"crypto/subtle"
 	"encoding/json"
 	"errors"
 	"fmt"
@@ -15,6 +16,11 @@ type User struct {
 }
 
 const maxBodyBytes = 1 << 20 // 1MB -> Operador Bit Shift (operador de deslocamento de bits)
+const (
+	basicUser = "admin"
+	basicPass = "123456"
+)
+
 // bit shift left) que significa -> "Desloque o número 1 para a esquerda 20 posições"
 // Matematica por tras
 // 1 << n  =  1 × 2^n  =  2^n
@@ -28,6 +34,32 @@ const maxBodyBytes = 1 << 20 // 1MB -> Operador Bit Shift (operador de deslocame
 // 1 << 10 = 2^10 = 1024      (1 KB)
 // 1 << 20 = 2^20 = 1048576   (1 MB)
 // 1 << 30 = 2^30 = 1073741824 (1 GB)
+
+func unauthorized(w http.ResponseWriter) {
+	w.Header().Set("WWW-Authenticate", `Basic realm="api", charset="UTF-8"`)
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(http.StatusUnauthorized)
+	_, _ = w.Write([]byte(`{"error":"unauthorized"}`))
+}
+
+func basicAuthMiddleware(next http.Handler) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		user, pass, ok := r.BasicAuth()
+		if !ok {
+			unauthorized(w)
+			return
+		}
+
+		userOK := subtle.ConstantTimeCompare([]byte(user), []byte(basicUser)) == 1
+		passOK := subtle.ConstantTimeCompare([]byte(pass), []byte(basicPass)) == 1
+		if !userOK || !passOK {
+			unauthorized(w)
+			return
+		}
+
+		next.ServeHTTP(w, r)
+	})
+}
 
 func postUserWithDecoder(w http.ResponseWriter, r *http.Request) {
 	if !strings.HasPrefix(r.Header.Get("Content-Type"), "application/json") {
@@ -103,5 +135,7 @@ func main() {
 	mux.HandleFunc("GET /api/v1/user", getUser)
 	mux.HandleFunc("POST /api/v1/user", postUserWithDecoder)
 	mux.HandleFunc("PUT /api/v1/user", putUserWithDecoder)
-	log.Fatal(http.ListenAndServe(":8080", mux))
+
+	handlerFinal := basicAuthMiddleware(mux)
+	log.Fatal(http.ListenAndServe(":8080", handlerFinal))
 }
