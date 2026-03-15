@@ -1,0 +1,52 @@
+<svg viewBox="0 0 720 200" xmlns="http://www.w3.org/2000/svg" font-family="monospace, sans-serif">
+  <rect width="720" height="200" fill="#f8f9fa" rx="10"/>
+  <text x="360" y="28" text-anchor="middle" font-size="13" font-weight="bold" fill="#444">gRPC — Google Remote Procedure Call</text>
+
+  <!-- Client side -->
+  <rect x="30" y="60" width="130" height="80" rx="8" fill="#1D4ED8"/>
+  <text x="95" y="85" text-anchor="middle" font-size="12" fill="white" font-weight="bold">Client</text>
+  <text x="95" y="103" text-anchor="middle" font-size="10" fill="#bfdbfe">Client Stub</text>
+  <text x="95" y="118" text-anchor="middle" font-size="10" fill="#bfdbfe">chama metodo</text>
+  <text x="95" y="131" text-anchor="middle" font-size="10" fill="#bfdbfe">como local</text>
+
+  <!-- Proto / channel box -->
+  <rect x="220" y="52" width="280" height="96" rx="8" fill="white" stroke="#D97706" stroke-width="1.5"/>
+  <text x="360" y="73" text-anchor="middle" font-size="11" fill="#92400E" font-weight="bold">Protobuf + HTTP/2 Channel</text>
+  <rect x="235" y="80" width="115" height="30" rx="5" fill="#FEF3C7" stroke="#D97706" stroke-width="1"/>
+  <text x="292" y="94" text-anchor="middle" font-size="10" fill="#92400E" font-weight="bold">Serializa</text>
+  <text x="292" y="105" text-anchor="middle" font-size="10" fill="#92400E">Protobuf binario</text>
+  <rect x="370" y="80" width="115" height="30" rx="5" fill="#FEF3C7" stroke="#D97706" stroke-width="1"/>
+  <text x="427" y="94" text-anchor="middle" font-size="10" fill="#92400E" font-weight="bold">Desserializa</text>
+  <text x="427" y="105" text-anchor="middle" font-size="10" fill="#92400E">Protobuf binario</text>
+  <text x="360" y="135" text-anchor="middle" font-size="10" fill="#6B7280">multiplexing · streaming · TLS · baixa latencia</text>
+
+  <!-- Server side -->
+  <rect x="560" y="60" width="130" height="80" rx="8" fill="#15803D"/>
+  <text x="625" y="85" text-anchor="middle" font-size="12" fill="white" font-weight="bold">Server</text>
+  <text x="625" y="103" text-anchor="middle" font-size="10" fill="#d1fae5">Server Stub</text>
+  <text x="625" y="118" text-anchor="middle" font-size="10" fill="#d1fae5">executa metodo</text>
+  <text x="625" y="131" text-anchor="middle" font-size="10" fill="#d1fae5">real</text>
+
+  <!-- .proto note -->
+  <rect x="220" y="160" width="280" height="28" rx="6" fill="#EDE9FE" stroke="#7C3AED" stroke-width="1"/>
+  <text x="360" y="172" text-anchor="middle" font-size="10" fill="#5B21B6" font-weight="bold">Contrato: arquivo .proto</text>
+  <text x="360" y="183" text-anchor="middle" font-size="10" fill="#5B21B6">define servicos, metodos e tipos compartilhados</text>
+
+  <!-- Arrows -->
+  <line x1="160" y1="93" x2="218" y2="93" stroke="#1D4ED8" stroke-width="2" marker-end="url(#grb)"/>
+  <line x1="500" y1="93" x2="558" y2="93" stroke="#D97706" stroke-width="2" marker-end="url(#gro)"/>
+  <line x1="558" y1="107" x2="500" y2="107" stroke="#15803D" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#grg)"/>
+  <line x1="218" y1="107" x2="160" y2="107" stroke="#6B7280" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#grgr)"/>
+
+  <text x="189" y="88" text-anchor="middle" font-size="10" fill="#1D4ED8">call</text>
+  <text x="529" y="88" text-anchor="middle" font-size="10" fill="#D97706">invoke</text>
+  <text x="529" y="120" text-anchor="middle" font-size="10" fill="#15803D">result</text>
+  <text x="189" y="120" text-anchor="middle" font-size="10" fill="#6B7280">result</text>
+
+  <defs>
+    <marker id="grb" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#1D4ED8"/></marker>
+    <marker id="gro" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#D97706"/></marker>
+    <marker id="grg" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#15803D"/></marker>
+    <marker id="grgr" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#6B7280"/></marker>
+  </defs>
+</svg>

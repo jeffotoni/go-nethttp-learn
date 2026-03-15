@@ -1,0 +1,41 @@
+<svg viewBox="0 0 720 180" xmlns="http://www.w3.org/2000/svg" font-family="monospace, sans-serif">
+  <rect width="720" height="180" fill="#f8f9fa" rx="10"/>
+  <text x="360" y="28" text-anchor="middle" font-size="13" font-weight="bold" fill="#444">REST — Representational State Transfer</text>
+
+  <!-- Client -->
+  <rect x="40" y="65" width="120" height="50" rx="8" fill="#1D4ED8"/>
+  <text x="100" y="95" text-anchor="middle" font-size="13" fill="white" font-weight="bold">Client</text>
+
+  <!-- Server -->
+  <rect x="560" y="65" width="120" height="50" rx="8" fill="#15803D"/>
+  <text x="620" y="90" text-anchor="middle" font-size="13" fill="white" font-weight="bold">Server</text>
+  <text x="620" y="105" text-anchor="middle" font-size="10" fill="#d1fae5">Resources</text>
+
+  <!-- HTTP Methods box -->
+  <rect x="240" y="48" width="240" height="84" rx="8" fill="white" stroke="#D97706" stroke-width="1.5"/>
+  <text x="360" y="68" text-anchor="middle" font-size="11" fill="#92400E" font-weight="bold">HTTP Methods</text>
+  <text x="360" y="84" text-anchor="middle" font-size="11" fill="#15803D">GET    /users</text>
+  <text x="360" y="99" text-anchor="middle" font-size="11" fill="#1D4ED8">POST   /users</text>
+  <text x="360" y="114" text-anchor="middle" font-size="11" fill="#7C3AED">PUT    /users/123</text>
+  <text x="360" y="126" text-anchor="middle" font-size="11" fill="#DC2626">DELETE /users/123</text>
+
+  <!-- Status codes -->
+  <text x="360" y="155" text-anchor="middle" font-size="10" fill="#6B7280">200 OK · 201 Created · 204 No Content · 400 Bad Request · 404 Not Found · 500 Internal Server Error</text>
+
+  <!-- Arrows -->
+  <line x1="160" y1="86" x2="238" y2="86" stroke="#1D4ED8" stroke-width="2" marker-end="url(#ab)"/>
+  <line x1="480" y1="86" x2="558" y2="86" stroke="#15803D" stroke-width="2" marker-end="url(#ag)"/>
+  <line x1="558" y1="96" x2="480" y2="96" stroke="#6B7280" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#agr)"/>
+  <line x1="238" y1="96" x2="160" y2="96" stroke="#6B7280" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#agr2)"/>
+  <text x="199" y="80" text-anchor="middle" font-size="10" fill="#1D4ED8">request</text>
+  <text x="199" y="108" text-anchor="middle" font-size="10" fill="#6B7280">response</text>
+  <text x="519" y="80" text-anchor="middle" font-size="10" fill="#15803D">request</text>
+  <text x="519" y="108" text-anchor="middle" font-size="10" fill="#6B7280">response</text>
+
+  <defs>
+    <marker id="ab" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#1D4ED8"/></marker>
+    <marker id="ag" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#15803D"/></marker>
+    <marker id="agr" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#6B7280"/></marker>
+    <marker id="agr2" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#6B7280"/></marker>
+  </defs>
+</svg>

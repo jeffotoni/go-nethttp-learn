@@ -1,0 +1,43 @@
+<svg viewBox="0 0 760 220" xmlns="http://www.w3.org/2000/svg" font-family="monospace, sans-serif">
+  <rect width="760" height="220" fill="#f8f9fa" rx="10"/>
+  <text x="380" y="26" text-anchor="middle" font-size="13" font-weight="bold" fill="#374151">Web Server Market Share (visão macro)</text>
+
+  <!-- Bars -->
+  <!-- nginx 34% -->
+  <rect x="80" y="48" width="408" height="26" rx="4" fill="#1D4ED8"/>
+  <text x="72" y="66" text-anchor="end" font-size="11" fill="#374151" font-weight="bold">nginx</text>
+  <text x="494" y="66" font-size="11" fill="#1D4ED8" font-weight="bold">~34%</text>
+
+  <!-- Apache 31% -->
+  <rect x="80" y="82" width="372" height="26" rx="4" fill="#15803D"/>
+  <text x="72" y="100" text-anchor="end" font-size="11" fill="#374151" font-weight="bold">Apache</text>
+  <text x="458" y="100" font-size="11" fill="#15803D" font-weight="bold">~31%</text>
+
+  <!-- Cloudflare 21% -->
+  <rect x="80" y="116" width="252" height="26" rx="4" fill="#D97706"/>
+  <text x="72" y="134" text-anchor="end" font-size="11" fill="#374151" font-weight="bold">Cloudflare</text>
+  <text x="338" y="134" font-size="11" fill="#D97706" font-weight="bold">~21%</text>
+
+  <!-- LiteSpeed 6% -->
+  <rect x="80" y="150" width="72" height="26" rx="4" fill="#7C3AED"/>
+  <text x="72" y="168" text-anchor="end" font-size="11" fill="#374151" font-weight="bold">LiteSpeed</text>
+  <text x="158" y="168" font-size="11" fill="#7C3AED" font-weight="bold">~6%</text>
+
+  <!-- IIS 5% -->
+  <rect x="80" y="184" width="60" height="26" rx="4" fill="#DC2626"/>
+  <text x="72" y="202" text-anchor="end" font-size="11" fill="#374151" font-weight="bold">IIS</text>
+  <text x="146" y="202" font-size="11" fill="#DC2626" font-weight="bold">~5%</text>
+
+  <!-- Scale reference line -->
+  <line x1="80" y1="38" x2="80" y2="215" stroke="#D1D5DB" stroke-width="1"/>
+  <line x1="200" y1="38" x2="200" y2="215" stroke="#E5E7EB" stroke-width="0.5" stroke-dasharray="3,3"/>
+  <line x1="320" y1="38" x2="320" y2="215" stroke="#E5E7EB" stroke-width="0.5" stroke-dasharray="3,3"/>
+  <line x1="440" y1="38" x2="440" y2="215" stroke="#E5E7EB" stroke-width="0.5" stroke-dasharray="3,3"/>
+
+  <text x="80" y="36" text-anchor="middle" font-size="9" fill="#9CA3AF">0%</text>
+  <text x="200" y="36" text-anchor="middle" font-size="9" fill="#9CA3AF">10%</text>
+  <text x="320" y="36" text-anchor="middle" font-size="9" fill="#9CA3AF">20%</text>
+  <text x="440" y="36" text-anchor="middle" font-size="9" fill="#9CA3AF">30%</text>
+
+  <text x="380" y="218" text-anchor="middle" font-size="9" fill="#9CA3AF">Fonte: W3Techs — visão aproximada para referência didática</text>
+</svg>

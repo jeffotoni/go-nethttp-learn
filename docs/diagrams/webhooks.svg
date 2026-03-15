@@ -1,0 +1,48 @@
+<svg viewBox="0 0 720 200" xmlns="http://www.w3.org/2000/svg" font-family="monospace, sans-serif">
+  <rect width="720" height="200" fill="#f8f9fa" rx="10"/>
+  <text x="360" y="28" text-anchor="middle" font-size="13" font-weight="bold" fill="#444">WebHooks — Event-Driven HTTP Callbacks</text>
+
+  <!-- Provider (server that triggers) -->
+  <rect x="40" y="65" width="140" height="60" rx="8" fill="#15803D"/>
+  <text x="110" y="90" text-anchor="middle" font-size="12" fill="white" font-weight="bold">Provider</text>
+  <text x="110" y="107" text-anchor="middle" font-size="10" fill="#d1fae5">ex: Stripe, GitHub</text>
+
+  <!-- Event box -->
+  <rect x="260" y="55" width="200" height="35" rx="6" fill="#FEF3C7" stroke="#D97706" stroke-width="1.5"/>
+  <text x="360" y="69" text-anchor="middle" font-size="11" fill="#92400E" font-weight="bold">Evento Ocorre</text>
+  <text x="360" y="83" text-anchor="middle" font-size="10" fill="#92400E">pagamento confirmado, push, deploy</text>
+
+  <!-- HTTP POST box -->
+  <rect x="260" y="105" width="200" height="35" rx="6" fill="#EDE9FE" stroke="#7C3AED" stroke-width="1.5"/>
+  <text x="360" y="119" text-anchor="middle" font-size="11" fill="#5B21B6" font-weight="bold">HTTP POST</text>
+  <text x="360" y="133" text-anchor="middle" font-size="10" fill="#5B21B6">payload JSON para a callback URL</text>
+
+  <!-- Consumer (client that receives) -->
+  <rect x="540" y="65" width="140" height="60" rx="8" fill="#1D4ED8"/>
+  <text x="610" y="90" text-anchor="middle" font-size="12" fill="white" font-weight="bold">Consumer</text>
+  <text x="610" y="107" text-anchor="middle" font-size="10" fill="#bfdbfe">sua aplicacao</text>
+
+  <!-- Arrows -->
+  <!-- Provider to event -->
+  <line x1="180" y1="80" x2="258" y2="72" stroke="#15803D" stroke-width="2" marker-end="url(#wg)"/>
+  <!-- Event to HTTP POST (vertical) -->
+  <line x1="360" y1="90" x2="360" y2="103" stroke="#D97706" stroke-width="1.5" marker-end="url(#wo)"/>
+  <!-- HTTP POST to consumer -->
+  <line x1="460" y1="122" x2="538" y2="95" stroke="#7C3AED" stroke-width="2" marker-end="url(#wp)"/>
+  <!-- Consumer ack back -->
+  <line x1="538" y1="108" x2="460" y2="132" stroke="#6B7280" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#wgr)"/>
+
+  <text x="219" y="70" text-anchor="middle" font-size="10" fill="#15803D">trigger</text>
+  <text x="499" y="101" text-anchor="middle" font-size="10" fill="#7C3AED">push</text>
+  <text x="499" y="130" text-anchor="middle" font-size="10" fill="#6B7280">200 OK</text>
+
+  <!-- Note -->
+  <text x="360" y="175" text-anchor="middle" font-size="10" fill="#6B7280">O servidor inicia a comunicacao. O cliente nao precisa fazer polling.</text>
+
+  <defs>
+    <marker id="wg" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#15803D"/></marker>
+    <marker id="wo" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#D97706"/></marker>
+    <marker id="wp" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#7C3AED"/></marker>
+    <marker id="wgr" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#6B7280"/></marker>
+  </defs>
+</svg>

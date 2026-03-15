@@ -1,0 +1,43 @@
+<svg viewBox="0 0 720 200" xmlns="http://www.w3.org/2000/svg" font-family="monospace, sans-serif">
+  <rect width="720" height="200" fill="#f8f9fa" rx="10"/>
+  <text x="360" y="28" text-anchor="middle" font-size="13" font-weight="bold" fill="#444">SSE — Server-Sent Events (Unidirecional)</text>
+
+  <!-- Client -->
+  <rect x="40" y="70" width="120" height="60" rx="8" fill="#1D4ED8"/>
+  <text x="100" y="97" text-anchor="middle" font-size="12" fill="white" font-weight="bold">Client</text>
+  <text x="100" y="113" text-anchor="middle" font-size="10" fill="#bfdbfe">EventSource API</text>
+
+  <!-- Server -->
+  <rect x="560" y="70" width="120" height="60" rx="8" fill="#15803D"/>
+  <text x="620" y="97" text-anchor="middle" font-size="12" fill="white" font-weight="bold">Server</text>
+  <text x="620" y="113" text-anchor="middle" font-size="10" fill="#d1fae5">event stream</text>
+
+  <!-- Initial GET request -->
+  <line x1="160" y1="83" x2="558" y2="83" stroke="#1D4ED8" stroke-width="1.5" marker-end="url(#sseb)"/>
+  <text x="360" y="77" text-anchor="middle" font-size="10" fill="#1D4ED8">GET /events · Accept: text/event-stream</text>
+
+  <!-- Stream events coming back (multiple arrows) -->
+  <line x1="558" y1="100" x2="160" y2="100" stroke="#15803D" stroke-width="2" marker-end="url(#sseg)"/>
+  <line x1="558" y1="113" x2="160" y2="113" stroke="#15803D" stroke-width="1.5" stroke-dasharray="6,3" marker-end="url(#sseg2)"/>
+  <line x1="558" y1="126" x2="160" y2="126" stroke="#15803D" stroke-width="1" stroke-dasharray="4,4" marker-end="url(#sseg3)"/>
+
+  <text x="360" y="97" text-anchor="middle" font-size="10" fill="#15803D">data: evento 1</text>
+  <text x="360" y="110" text-anchor="middle" font-size="10" fill="#15803D">data: evento 2  ···</text>
+  <text x="360" y="123" text-anchor="middle" font-size="10" fill="#15803D">data: evento N  ···</text>
+
+  <!-- Notes -->
+  <rect x="180" y="148" width="160" height="32" rx="6" fill="#DCFCE7" stroke="#15803D" stroke-width="1"/>
+  <text x="260" y="161" text-anchor="middle" font-size="10" fill="#15803D" font-weight="bold">Content-Type:</text>
+  <text x="260" y="174" text-anchor="middle" font-size="10" fill="#15803D">text/event-stream</text>
+
+  <rect x="380" y="148" width="160" height="32" rx="6" fill="#EDE9FE" stroke="#7C3AED" stroke-width="1"/>
+  <text x="460" y="161" text-anchor="middle" font-size="10" fill="#5B21B6" font-weight="bold">Reconexao</text>
+  <text x="460" y="174" text-anchor="middle" font-size="10" fill="#5B21B6">automatica pelo browser</text>
+
+  <defs>
+    <marker id="sseb" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#1D4ED8"/></marker>
+    <marker id="sseg" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#15803D"/></marker>
+    <marker id="sseg2" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#15803D"/></marker>
+    <marker id="sseg3" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#15803D"/></marker>
+  </defs>
+</svg>

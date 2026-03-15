@@ -1,0 +1,82 @@
+<svg viewBox="0 0 760 320" xmlns="http://www.w3.org/2000/svg" font-family="monospace, sans-serif">
+  <rect width="760" height="320" fill="#f8f9fa" rx="10"/>
+  <text x="380" y="26" text-anchor="middle" font-size="13" font-weight="bold" fill="#374151">Modelo OSI (7 Camadas) vs TCP/IP (4 Camadas)</text>
+
+  <!-- OSI header -->
+  <rect x="30" y="40" width="300" height="28" rx="6" fill="#7C3AED"/>
+  <text x="180" y="58" text-anchor="middle" font-size="12" fill="white" font-weight="bold">Modelo OSI</text>
+
+  <!-- TCP/IP header -->
+  <rect x="430" y="40" width="300" height="28" rx="6" fill="#1D4ED8"/>
+  <text x="580" y="58" text-anchor="middle" font-size="12" fill="white" font-weight="bold">Modelo TCP/IP</text>
+
+  <!-- OSI Layers -->
+  <!-- Layer 7 -->
+  <rect x="30" y="76" width="300" height="28" rx="4" fill="#EDE9FE" stroke="#7C3AED" stroke-width="1.5"/>
+  <text x="55" y="93" font-size="10" fill="#5B21B6" font-weight="bold">7 — Aplicação</text>
+  <text x="240" y="93" text-anchor="middle" font-size="10" fill="#5B21B6">HTTP, HTTPS, FTP, DNS, SMTP</text>
+
+  <!-- Layer 6 -->
+  <rect x="30" y="108" width="300" height="28" rx="4" fill="#EDE9FE" stroke="#7C3AED" stroke-width="1"/>
+  <text x="55" y="125" font-size="10" fill="#5B21B6" font-weight="bold">6 — Apresentação</text>
+  <text x="240" y="125" text-anchor="middle" font-size="10" fill="#5B21B6">SSL/TLS, JSON, XML, compressão</text>
+
+  <!-- Layer 5 -->
+  <rect x="30" y="140" width="300" height="28" rx="4" fill="#EDE9FE" stroke="#7C3AED" stroke-width="1"/>
+  <text x="55" y="157" font-size="10" fill="#5B21B6" font-weight="bold">5 — Sessão</text>
+  <text x="240" y="157" text-anchor="middle" font-size="10" fill="#5B21B6">NetBIOS, RPC, gerencia sessao</text>
+
+  <!-- Layer 4 -->
+  <rect x="30" y="172" width="300" height="28" rx="4" fill="#DBEAFE" stroke="#1D4ED8" stroke-width="1.5"/>
+  <text x="55" y="189" font-size="10" fill="#1e3a8a" font-weight="bold">4 — Transporte</text>
+  <text x="240" y="189" text-anchor="middle" font-size="10" fill="#1e3a8a">TCP · UDP · portas</text>
+
+  <!-- Layer 3 -->
+  <rect x="30" y="204" width="300" height="28" rx="4" fill="#DCFCE7" stroke="#15803D" stroke-width="1.5"/>
+  <text x="55" y="221" font-size="10" fill="#166534" font-weight="bold">3 — Rede</text>
+  <text x="240" y="221" text-anchor="middle" font-size="10" fill="#166534">IP · ICMP · roteamento</text>
+
+  <!-- Layer 2 -->
+  <rect x="30" y="236" width="300" height="28" rx="4" fill="#FEF3C7" stroke="#D97706" stroke-width="1.5"/>
+  <text x="55" y="253" font-size="10" fill="#92400E" font-weight="bold">2 — Enlace</text>
+  <text x="240" y="253" text-anchor="middle" font-size="10" fill="#92400E">Ethernet · ARP · PPP · Wi-Fi (MAC)</text>
+
+  <!-- Layer 1 -->
+  <rect x="30" y="268" width="300" height="28" rx="4" fill="#FEE2E2" stroke="#DC2626" stroke-width="1.5"/>
+  <text x="55" y="285" font-size="10" fill="#991B1B" font-weight="bold">1 — Física</text>
+  <text x="240" y="285" text-anchor="middle" font-size="10" fill="#991B1B">Cabos · Fibra · Sinais elétricos/ópticos</text>
+
+  <!-- TCP/IP Layers (grouped) -->
+  <!-- Application (maps to 7+6+5) -->
+  <rect x="430" y="76" width="300" height="92" rx="4" fill="#EDE9FE" stroke="#7C3AED" stroke-width="1.5"/>
+  <text x="580" y="98" text-anchor="middle" font-size="11" fill="#5B21B6" font-weight="bold">Aplicação</text>
+  <text x="580" y="114" text-anchor="middle" font-size="10" fill="#5B21B6">HTTP, HTTPS, FTP, SMTP, DNS</text>
+  <text x="580" y="130" text-anchor="middle" font-size="10" fill="#9CA3AF">(equivale às camadas 5, 6 e 7 do OSI)</text>
+  <text x="580" y="155" text-anchor="middle" font-size="10" fill="#5B21B6">onde sua API Go vive</text>
+
+  <!-- Transport (maps to 4) -->
+  <rect x="430" y="172" width="300" height="28" rx="4" fill="#DBEAFE" stroke="#1D4ED8" stroke-width="1.5"/>
+  <text x="580" y="189" text-anchor="middle" font-size="11" fill="#1e3a8a" font-weight="bold">Transporte — TCP · UDP</text>
+
+  <!-- Internet (maps to 3) -->
+  <rect x="430" y="204" width="300" height="28" rx="4" fill="#DCFCE7" stroke="#15803D" stroke-width="1.5"/>
+  <text x="580" y="221" text-anchor="middle" font-size="11" fill="#166534" font-weight="bold">Internet — IP · ICMP</text>
+
+  <!-- Network access (maps to 2+1) -->
+  <rect x="430" y="236" width="300" height="60" rx="4" fill="#FEF3C7" stroke="#D97706" stroke-width="1.5"/>
+  <text x="580" y="258" text-anchor="middle" font-size="11" fill="#92400E" font-weight="bold">Acesso à Rede</text>
+  <text x="580" y="274" text-anchor="middle" font-size="10" fill="#92400E">Ethernet · Wi-Fi · Física</text>
+  <text x="580" y="288" text-anchor="middle" font-size="10" fill="#9CA3AF">(equivale às camadas 1 e 2 do OSI)</text>
+
+  <!-- Correspondence lines -->
+  <line x1="332" y1="90" x2="428" y2="110" stroke="#7C3AED" stroke-width="0.8" stroke-dasharray="4,3" opacity="0.5"/>
+  <line x1="332" y1="122" x2="428" y2="118" stroke="#7C3AED" stroke-width="0.8" stroke-dasharray="4,3" opacity="0.5"/>
+  <line x1="332" y1="154" x2="428" y2="126" stroke="#7C3AED" stroke-width="0.8" stroke-dasharray="4,3" opacity="0.5"/>
+  <line x1="332" y1="186" x2="428" y2="186" stroke="#1D4ED8" stroke-width="0.8" stroke-dasharray="4,3" opacity="0.5"/>
+  <line x1="332" y1="218" x2="428" y2="218" stroke="#15803D" stroke-width="0.8" stroke-dasharray="4,3" opacity="0.5"/>
+  <line x1="332" y1="250" x2="428" y2="260" stroke="#D97706" stroke-width="0.8" stroke-dasharray="4,3" opacity="0.5"/>
+  <line x1="332" y1="282" x2="428" y2="272" stroke="#DC2626" stroke-width="0.8" stroke-dasharray="4,3" opacity="0.5"/>
+
+  <!-- Stack note -->
+  <text x="380" y="308" text-anchor="middle" font-size="10" fill="#6B7280">HTTP → TCP → IP    |    HTTP/3: HTTP → QUIC (UDP) → IP</text>
+</svg>

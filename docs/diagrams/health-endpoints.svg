@@ -1,0 +1,71 @@
+<svg viewBox="0 0 760 280" xmlns="http://www.w3.org/2000/svg" font-family="monospace, sans-serif">
+  <rect width="760" height="280" fill="#f8f9fa" rx="10"/>
+  <text x="380" y="26" text-anchor="middle" font-size="13" font-weight="bold" fill="#374151">Health Endpoints — Kubernetes Probes</text>
+
+  <!-- Kubernetes box -->
+  <rect x="20" y="50" width="160" height="180" rx="8" fill="#DBEAFE" stroke="#1D4ED8" stroke-width="2"/>
+  <text x="100" y="74" text-anchor="middle" font-size="11" fill="#1e3a8a" font-weight="bold">Kubernetes</text>
+
+  <!-- Liveness Probe -->
+  <rect x="34" y="84" width="132" height="34" rx="5" fill="#1D4ED8"/>
+  <text x="100" y="100" text-anchor="middle" font-size="10" fill="white" font-weight="bold">Liveness Probe</text>
+  <text x="100" y="113" text-anchor="middle" font-size="9" fill="#bfdbfe">reinicia se falhar</text>
+
+  <!-- Readiness Probe -->
+  <rect x="34" y="126" width="132" height="34" rx="5" fill="#7C3AED"/>
+  <text x="100" y="142" text-anchor="middle" font-size="10" fill="white" font-weight="bold">Readiness Probe</text>
+  <text x="100" y="155" text-anchor="middle" font-size="9" fill="#e9d5ff">remove do load balancer</text>
+
+  <!-- Startup Probe -->
+  <rect x="34" y="168" width="132" height="34" rx="5" fill="#D97706"/>
+  <text x="100" y="184" text-anchor="middle" font-size="10" fill="white" font-weight="bold">Startup Probe</text>
+  <text x="100" y="197" text-anchor="middle" font-size="9" fill="#fef3c7">aguarda app subir</text>
+
+  <!-- Server box -->
+  <rect x="310" y="40" width="240" height="200" rx="8" fill="white" stroke="#15803D" stroke-width="2"/>
+  <text x="430" y="64" text-anchor="middle" font-size="11" fill="#166534" font-weight="bold">Go HTTP Server</text>
+
+  <!-- /livez -->
+  <rect x="326" y="76" width="208" height="40" rx="5" fill="#DCFCE7" stroke="#15803D" stroke-width="1.5"/>
+  <text x="430" y="94" text-anchor="middle" font-size="11" fill="#166534" font-weight="bold">GET /livez</text>
+  <text x="430" y="109" text-anchor="middle" font-size="9" fill="#374151">processo esta vivo → 200 {"status":"alive"}</text>
+
+  <!-- /readyz -->
+  <rect x="326" y="126" width="208" height="48" rx="5" fill="#EDE9FE" stroke="#7C3AED" stroke-width="1.5"/>
+  <text x="430" y="144" text-anchor="middle" font-size="11" fill="#5B21B6" font-weight="bold">GET /readyz</text>
+  <text x="430" y="158" text-anchor="middle" font-size="9" fill="#374151">dependencias OK → 200 {"status":"ready"}</text>
+  <text x="430" y="169" text-anchor="middle" font-size="9" fill="#DC2626">falha → 503 {"error":"not_ready"}</text>
+
+  <!-- /healthz -->
+  <rect x="326" y="184" width="208" height="40" rx="5" fill="#FEF3C7" stroke="#D97706" stroke-width="1.5"/>
+  <text x="430" y="202" text-anchor="middle" font-size="11" fill="#92400E" font-weight="bold">GET /healthz</text>
+  <text x="430" y="217" text-anchor="middle" font-size="9" fill="#374151">servidor respondeu → 200 {"status":"ok"}</text>
+
+  <!-- Arrows: liveness -> livez -->
+  <line x1="168" y1="101" x2="308" y2="101" stroke="#1D4ED8" stroke-width="1.5" marker-end="url(#hp1)" stroke-dasharray="5,3"/>
+
+  <!-- Arrows: readiness -> readyz -->
+  <line x1="168" y1="143" x2="308" y2="150" stroke="#7C3AED" stroke-width="1.5" marker-end="url(#hp2)" stroke-dasharray="5,3"/>
+
+  <!-- Arrows: startup -> healthz -->
+  <line x1="168" y1="185" x2="308" y2="200" stroke="#D97706" stroke-width="1.5" marker-end="url(#hp3)" stroke-dasharray="5,3"/>
+
+  <!-- Load Balancer box -->
+  <rect x="590" y="110" width="150" height="60" rx="8" fill="#FEE2E2" stroke="#DC2626" stroke-width="1.5"/>
+  <text x="665" y="135" text-anchor="middle" font-size="11" fill="#991B1B" font-weight="bold">Load Balancer</text>
+  <text x="665" y="152" text-anchor="middle" font-size="9" fill="#374151">trafego apenas para</text>
+  <text x="665" y="163" text-anchor="middle" font-size="9" fill="#374151">pods em ready</text>
+
+  <!-- Arrow readyz result to LB -->
+  <line x1="534" y1="150" x2="588" y2="140" stroke="#DC2626" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#hp4)"/>
+  <text x="561" y="140" text-anchor="middle" font-size="9" fill="#DC2626">ready?</text>
+
+  <text x="380" y="258" text-anchor="middle" font-size="10" fill="#6B7280">/livez e /healthz: processo vivo. /readyz: banco, cache, dependencias externas OK?</text>
+
+  <defs>
+    <marker id="hp1" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#1D4ED8"/></marker>
+    <marker id="hp2" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#7C3AED"/></marker>
+    <marker id="hp3" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#D97706"/></marker>
+    <marker id="hp4" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#DC2626"/></marker>
+  </defs>
+</svg>

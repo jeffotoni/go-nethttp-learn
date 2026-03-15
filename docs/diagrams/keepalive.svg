@@ -1,0 +1,81 @@
+<svg viewBox="0 0 760 300" xmlns="http://www.w3.org/2000/svg" font-family="monospace, sans-serif">
+  <rect width="760" height="300" fill="#f8f9fa" rx="10"/>
+  <text x="380" y="26" text-anchor="middle" font-size="13" font-weight="bold" fill="#374151">Keep-Alive: HTTP/1.0 vs HTTP/1.1 vs HTTP/2</text>
+
+  <!-- Column headers -->
+  <rect x="20" y="38" width="220" height="28" rx="6" fill="#DC2626"/>
+  <text x="130" y="57" text-anchor="middle" font-size="12" fill="white" font-weight="bold">HTTP/1.0</text>
+
+  <rect x="270" y="38" width="220" height="28" rx="6" fill="#D97706"/>
+  <text x="380" y="57" text-anchor="middle" font-size="12" fill="white" font-weight="bold">HTTP/1.1</text>
+
+  <rect x="520" y="38" width="220" height="28" rx="6" fill="#1D4ED8"/>
+  <text x="630" y="57" text-anchor="middle" font-size="12" fill="white" font-weight="bold">HTTP/2</text>
+
+  <!-- HTTP/1.0: 3 requests, each with open/close -->
+  <!-- Request 1 -->
+  <rect x="35" y="80" width="190" height="22" rx="4" fill="#FEE2E2" stroke="#DC2626" stroke-width="1"/>
+  <text x="130" y="95" text-anchor="middle" font-size="10" fill="#DC2626">TCP connect</text>
+  <rect x="35" y="106" width="190" height="22" rx="4" fill="#FEE2E2" stroke="#DC2626" stroke-width="1"/>
+  <text x="130" y="121" text-anchor="middle" font-size="10" fill="#DC2626">GET /page → 200 OK</text>
+  <rect x="35" y="132" width="190" height="22" rx="4" fill="#FEE2E2" stroke="#DC2626" stroke-width="1"/>
+  <text x="130" y="147" text-anchor="middle" font-size="10" fill="#DC2626">TCP close</text>
+  <!-- Request 2 -->
+  <rect x="35" y="162" width="190" height="22" rx="4" fill="#FEE2E2" stroke="#DC2626" stroke-width="1"/>
+  <text x="130" y="177" text-anchor="middle" font-size="10" fill="#DC2626">TCP connect</text>
+  <rect x="35" y="188" width="190" height="22" rx="4" fill="#FEE2E2" stroke="#DC2626" stroke-width="1"/>
+  <text x="130" y="203" text-anchor="middle" font-size="10" fill="#DC2626">GET /style → 200 OK</text>
+  <rect x="35" y="214" width="190" height="22" rx="4" fill="#FEE2E2" stroke="#DC2626" stroke-width="1"/>
+  <text x="130" y="229" text-anchor="middle" font-size="10" fill="#DC2626">TCP close</text>
+
+  <text x="130" y="262" text-anchor="middle" font-size="10" fill="#DC2626" font-weight="bold">1 conexao por request</text>
+  <text x="130" y="276" text-anchor="middle" font-size="10" fill="#9CA3AF">overhead alto de TCP</text>
+
+  <!-- HTTP/1.1: 1 connection, sequential requests -->
+  <rect x="285" y="80" width="190" height="22" rx="4" fill="#FEF3C7" stroke="#D97706" stroke-width="1.5"/>
+  <text x="380" y="95" text-anchor="middle" font-size="10" fill="#92400E">TCP connect (1x)</text>
+  <rect x="285" y="106" width="190" height="22" rx="4" fill="#FFFBEB" stroke="#D97706" stroke-width="1"/>
+  <text x="380" y="121" text-anchor="middle" font-size="10" fill="#92400E">GET /page → 200 OK</text>
+  <rect x="285" y="132" width="190" height="22" rx="4" fill="#FFFBEB" stroke="#D97706" stroke-width="1"/>
+  <text x="380" y="147" text-anchor="middle" font-size="10" fill="#92400E">GET /style → 200 OK</text>
+  <rect x="285" y="158" width="190" height="22" rx="4" fill="#FFFBEB" stroke="#D97706" stroke-width="1"/>
+  <text x="380" y="173" text-anchor="middle" font-size="10" fill="#92400E">GET /script → 200 OK</text>
+  <line x1="380" y1="184" x2="380" y2="196" stroke="#D97706" stroke-width="1.5" stroke-dasharray="3,2"/>
+  <rect x="285" y="200" width="190" height="22" rx="4" fill="#FEF3C7" stroke="#D97706" stroke-width="1.5"/>
+  <text x="380" y="215" text-anchor="middle" font-size="10" fill="#92400E">TCP close (Connection: close)</text>
+
+  <text x="380" y="262" text-anchor="middle" font-size="10" fill="#D97706" font-weight="bold">1 conexao, requests sequenciais</text>
+  <text x="380" y="276" text-anchor="middle" font-size="10" fill="#9CA3AF">keep-alive padrao</text>
+
+  <!-- HTTP/2: 1 connection, multiplexed streams -->
+  <rect x="535" y="80" width="190" height="22" rx="4" fill="#DBEAFE" stroke="#1D4ED8" stroke-width="1.5"/>
+  <text x="630" y="95" text-anchor="middle" font-size="10" fill="#1e3a8a">TCP connect (1x) + TLS</text>
+
+  <!-- Streams side by side -->
+  <rect x="535" y="108" width="58" height="80" rx="4" fill="#EFF6FF" stroke="#1D4ED8" stroke-width="1"/>
+  <text x="564" y="124" text-anchor="middle" font-size="9" fill="#1D4ED8" font-weight="bold">Stream 1</text>
+  <text x="564" y="139" text-anchor="middle" font-size="9" fill="#1D4ED8">GET</text>
+  <text x="564" y="153" text-anchor="middle" font-size="9" fill="#1D4ED8">/page</text>
+  <text x="564" y="168" text-anchor="middle" font-size="9" fill="#15803D">200</text>
+  <text x="564" y="181" text-anchor="middle" font-size="9" fill="#15803D">OK</text>
+
+  <rect x="601" y="108" width="58" height="80" rx="4" fill="#EFF6FF" stroke="#1D4ED8" stroke-width="1"/>
+  <text x="630" y="124" text-anchor="middle" font-size="9" fill="#1D4ED8" font-weight="bold">Stream 2</text>
+  <text x="630" y="139" text-anchor="middle" font-size="9" fill="#1D4ED8">GET</text>
+  <text x="630" y="153" text-anchor="middle" font-size="9" fill="#1D4ED8">/style</text>
+  <text x="630" y="168" text-anchor="middle" font-size="9" fill="#15803D">200</text>
+  <text x="630" y="181" text-anchor="middle" font-size="9" fill="#15803D">OK</text>
+
+  <rect x="667" y="108" width="58" height="80" rx="4" fill="#EFF6FF" stroke="#1D4ED8" stroke-width="1"/>
+  <text x="696" y="124" text-anchor="middle" font-size="9" fill="#1D4ED8" font-weight="bold">Stream 3</text>
+  <text x="696" y="139" text-anchor="middle" font-size="9" fill="#1D4ED8">GET</text>
+  <text x="696" y="153" text-anchor="middle" font-size="9" fill="#1D4ED8">/img</text>
+  <text x="696" y="168" text-anchor="middle" font-size="9" fill="#15803D">200</text>
+  <text x="696" y="181" text-anchor="middle" font-size="9" fill="#15803D">OK</text>
+
+  <rect x="535" y="196" width="190" height="22" rx="4" fill="#DBEAFE" stroke="#1D4ED8" stroke-width="1.5"/>
+  <text x="630" y="211" text-anchor="middle" font-size="10" fill="#1e3a8a">TCP close (raro)</text>
+
+  <text x="630" y="262" text-anchor="middle" font-size="10" fill="#1D4ED8" font-weight="bold">1 conexao, streams paralelos</text>
+  <text x="630" y="276" text-anchor="middle" font-size="10" fill="#9CA3AF">multiplexing nativo</text>
+</svg>

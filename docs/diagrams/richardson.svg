@@ -1,0 +1,57 @@
+<svg viewBox="0 0 760 300" xmlns="http://www.w3.org/2000/svg" font-family="monospace, sans-serif">
+  <rect width="760" height="300" fill="#f8f9fa" rx="10"/>
+  <text x="380" y="26" text-anchor="middle" font-size="13" font-weight="bold" fill="#374151">Níveis de Maturidade Richardson</text>
+
+  <!-- Step 0 -->
+  <rect x="30" y="220" width="160" height="56" rx="6" fill="#DC2626"/>
+  <text x="110" y="243" text-anchor="middle" font-size="12" fill="white" font-weight="bold">Nível 0</text>
+  <text x="110" y="259" text-anchor="middle" font-size="10" fill="#fecaca">The Swamp of POX</text>
+  <text x="110" y="272" text-anchor="middle" font-size="10" fill="#fecaca">HTTP como tunel RPC</text>
+
+  <!-- Step 1 -->
+  <rect x="200" y="175" width="160" height="100" rx="6" fill="#D97706"/>
+  <text x="280" y="200" text-anchor="middle" font-size="12" fill="white" font-weight="bold">Nível 1</text>
+  <text x="280" y="218" text-anchor="middle" font-size="10" fill="#fef3c7">Recursos</text>
+  <text x="280" y="234" text-anchor="middle" font-size="10" fill="#fef3c7">/users /orders</text>
+  <text x="280" y="250" text-anchor="middle" font-size="10" fill="#fef3c7">URIs distintas</text>
+  <text x="280" y="264" text-anchor="middle" font-size="10" fill="#fef3c7">POST para tudo</text>
+
+  <!-- Step 2 -->
+  <rect x="370" y="125" width="160" height="150" rx="6" fill="#15803D"/>
+  <text x="450" y="152" text-anchor="middle" font-size="12" fill="white" font-weight="bold">Nível 2</text>
+  <text x="450" y="170" text-anchor="middle" font-size="10" fill="#d1fae5">Verbos HTTP corretos</text>
+  <rect x="385" y="178" width="130" height="14" rx="3" fill="#166534"/>
+  <text x="450" y="189" text-anchor="middle" font-size="9" fill="#6ee7b7">GET · POST · PUT · DELETE</text>
+  <text x="450" y="208" text-anchor="middle" font-size="10" fill="#d1fae5">Status codes corretos</text>
+  <rect x="385" y="216" width="130" height="14" rx="3" fill="#166534"/>
+  <text x="450" y="227" text-anchor="middle" font-size="9" fill="#6ee7b7">200 · 201 · 404 · 422</text>
+  <text x="450" y="248" text-anchor="middle" font-size="10" fill="#d1fae5" font-style="italic">maioria das APIs</text>
+  <text x="450" y="263" text-anchor="middle" font-size="10" fill="#d1fae5" font-style="italic">do mercado esta aqui</text>
+
+  <!-- Step 3 -->
+  <rect x="540" y="65" width="190" height="210" rx="6" fill="#1D4ED8"/>
+  <text x="635" y="92" text-anchor="middle" font-size="12" fill="white" font-weight="bold">Nível 3 — HATEOAS</text>
+  <text x="635" y="112" text-anchor="middle" font-size="10" fill="#bfdbfe">Hypermedia como motor</text>
+  <text x="635" y="128" text-anchor="middle" font-size="10" fill="#bfdbfe">do estado da aplicacao</text>
+  <rect x="553" y="140" width="164" height="72" rx="5" fill="#1e3a8a"/>
+  <text x="635" y="158" text-anchor="middle" font-size="9" fill="#93c5fd">{</text>
+  <text x="635" y="171" text-anchor="middle" font-size="9" fill="#93c5fd">  "id": 10,</text>
+  <text x="635" y="184" text-anchor="middle" font-size="9" fill="#93c5fd">  "links": [</text>
+  <text x="635" y="197" text-anchor="middle" font-size="9" fill="#93c5fd">    { "rel": "orders" }</text>
+  <text x="635" y="210" text-anchor="middle" font-size="9" fill="#93c5fd">  ]</text>
+  <text x="635" y="235" text-anchor="middle" font-size="10" fill="#bfdbfe">API guia o cliente</text>
+  <text x="635" y="250" text-anchor="middle" font-size="10" fill="#bfdbfe">dinamicamente</text>
+  <text x="635" y="265" text-anchor="middle" font-size="10" fill="#93c5fd" font-style="italic">pouco usado na pratica</text>
+
+  <!-- Arrow up showing progression -->
+  <line x1="22" y1="240" x2="22" y2="80" stroke="#9CA3AF" stroke-width="1.5" marker-end="url(#uparr)"/>
+  <text x="18" y="165" text-anchor="middle" font-size="10" fill="#6B7280" transform="rotate(-90, 18, 165)">maturidade REST</text>
+
+  <defs>
+    <marker id="uparr" markerWidth="8" markerHeight="8" refX="3" refY="6" orient="auto">
+      <path d="M0,8 L4,0 L8,8 z" fill="#9CA3AF"/>
+    </marker>
+  </defs>
+
+  <text x="380" y="292" text-anchor="middle" font-size="10" fill="#9CA3AF">Modelo proposto por Leonard Richardson — quanto mais alto, mais RESTful</text>
+</svg>

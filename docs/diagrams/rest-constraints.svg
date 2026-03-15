@@ -1,0 +1,57 @@
+<svg viewBox="0 0 760 310" xmlns="http://www.w3.org/2000/svg" font-family="monospace, sans-serif">
+  <rect width="760" height="310" fill="#f8f9fa" rx="10"/>
+  <text x="380" y="26" text-anchor="middle" font-size="13" font-weight="bold" fill="#374151">REST Constraints — Os 6 Pilares</text>
+
+  <!-- Central node -->
+  <circle cx="380" cy="155" r="46" fill="#7C3AED"/>
+  <text x="380" y="150" text-anchor="middle" font-size="13" fill="white" font-weight="bold">REST</text>
+  <text x="380" y="167" text-anchor="middle" font-size="10" fill="#e9d5ff">6 constraints</text>
+
+  <!-- 1. Client-Server (top-left) -->
+  <rect x="30" y="38" width="170" height="64" rx="8" fill="white" stroke="#1D4ED8" stroke-width="1.5"/>
+  <text x="115" y="58" text-anchor="middle" font-size="11" fill="#1D4ED8" font-weight="bold">1. Client-Server</text>
+  <text x="115" y="74" text-anchor="middle" font-size="10" fill="#374151">Separacao de</text>
+  <text x="115" y="88" text-anchor="middle" font-size="10" fill="#374151">responsabilidades</text>
+  <line x1="200" y1="70" x2="336" y2="130" stroke="#1D4ED8" stroke-width="1" stroke-dasharray="4,3"/>
+
+  <!-- 2. Stateless (top-center) -->
+  <rect x="295" y="38" width="170" height="64" rx="8" fill="white" stroke="#15803D" stroke-width="1.5"/>
+  <text x="380" y="58" text-anchor="middle" font-size="11" fill="#15803D" font-weight="bold">2. Stateless</text>
+  <text x="380" y="74" text-anchor="middle" font-size="10" fill="#374151">Cada request carrega</text>
+  <text x="380" y="88" text-anchor="middle" font-size="10" fill="#374151">todo o contexto</text>
+  <line x1="380" y1="102" x2="380" y2="109" stroke="#15803D" stroke-width="1" stroke-dasharray="4,3"/>
+
+  <!-- 3. Cacheable (top-right) -->
+  <rect x="560" y="38" width="170" height="64" rx="8" fill="white" stroke="#D97706" stroke-width="1.5"/>
+  <text x="645" y="58" text-anchor="middle" font-size="11" fill="#D97706" font-weight="bold">3. Cacheable</text>
+  <text x="645" y="74" text-anchor="middle" font-size="10" fill="#374151">Cache-Control, ETag</text>
+  <text x="645" y="88" text-anchor="middle" font-size="10" fill="#374151">Last-Modified</text>
+  <line x1="560" y1="70" x2="424" y2="130" stroke="#D97706" stroke-width="1" stroke-dasharray="4,3"/>
+
+  <!-- 4. Uniform Interface (bottom-left) -->
+  <rect x="30" y="210" width="170" height="76" rx="8" fill="white" stroke="#DC2626" stroke-width="1.5"/>
+  <text x="115" y="230" text-anchor="middle" font-size="11" fill="#DC2626" font-weight="bold">4. Uniform Interface</text>
+  <text x="115" y="246" text-anchor="middle" font-size="10" fill="#374151">URI + metodo + status</text>
+  <text x="115" y="260" text-anchor="middle" font-size="10" fill="#374151">+ representacao</text>
+  <text x="115" y="275" text-anchor="middle" font-size="10" fill="#9CA3AF">HATEOAS incluso</text>
+  <line x1="200" y1="248" x2="336" y2="180" stroke="#DC2626" stroke-width="1" stroke-dasharray="4,3"/>
+
+  <!-- 5. Layered System (bottom-center) -->
+  <rect x="295" y="222" width="170" height="64" rx="8" fill="white" stroke="#7C3AED" stroke-width="1.5"/>
+  <text x="380" y="242" text-anchor="middle" font-size="11" fill="#7C3AED" font-weight="bold">5. Layered System</text>
+  <text x="380" y="258" text-anchor="middle" font-size="10" fill="#374151">CDN, load balancer</text>
+  <text x="380" y="272" text-anchor="middle" font-size="10" fill="#374151">API gateway</text>
+  <line x1="380" y1="222" x2="380" y2="201" stroke="#7C3AED" stroke-width="1" stroke-dasharray="4,3"/>
+
+  <!-- 6. Code on Demand (bottom-right) -->
+  <rect x="560" y="210" width="170" height="76" rx="8" fill="white" stroke="#6B7280" stroke-width="1.5" stroke-dasharray="6,3"/>
+  <text x="645" y="230" text-anchor="middle" font-size="11" fill="#6B7280" font-weight="bold">6. Code on Demand</text>
+  <text x="645" y="246" text-anchor="middle" font-size="10" fill="#374151">Servidor envia codigo</text>
+  <text x="645" y="260" text-anchor="middle" font-size="10" fill="#374151">executavel (opcional)</text>
+  <text x="645" y="275" text-anchor="middle" font-size="10" fill="#9CA3AF">ex: JavaScript</text>
+  <line x1="560" y1="248" x2="424" y2="180" stroke="#6B7280" stroke-width="1" stroke-dasharray="4,3"/>
+
+  <!-- Optional badge -->
+  <rect x="604" y="195" width="56" height="18" rx="9" fill="#6B7280"/>
+  <text x="632" y="207" text-anchor="middle" font-size="9" fill="white">opcional</text>
+</svg>

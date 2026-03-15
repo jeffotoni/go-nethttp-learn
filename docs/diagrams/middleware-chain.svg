@@ -1,0 +1,80 @@
+<svg viewBox="0 0 760 240" xmlns="http://www.w3.org/2000/svg" font-family="monospace, sans-serif">
+  <rect width="760" height="240" fill="#f8f9fa" rx="10"/>
+  <text x="380" y="26" text-anchor="middle" font-size="13" font-weight="bold" fill="#374151">Cadeia de Middleware — Request e Response Flow</text>
+
+  <!-- Client -->
+  <rect x="16" y="88" width="80" height="60" rx="8" fill="#1D4ED8"/>
+  <text x="56" y="113" text-anchor="middle" font-size="11" fill="white" font-weight="bold">Client</text>
+  <text x="56" y="130" text-anchor="middle" font-size="9" fill="#bfdbfe">request</text>
+
+  <!-- Arrow right -->
+  <line x1="98" y1="105" x2="128" y2="105" stroke="#1D4ED8" stroke-width="2" marker-end="url(#mw1)"/>
+  <text x="113" y="99" text-anchor="middle" font-size="9" fill="#1D4ED8">req</text>
+
+  <!-- Middleware 1: Logger -->
+  <rect x="130" y="68" width="120" height="100" rx="8" fill="#FEF3C7" stroke="#D97706" stroke-width="2"/>
+  <text x="190" y="90" text-anchor="middle" font-size="11" fill="#92400E" font-weight="bold">Logger</text>
+  <text x="190" y="107" text-anchor="middle" font-size="9" fill="#374151">log.Printf(</text>
+  <text x="190" y="120" text-anchor="middle" font-size="9" fill="#374151">  method,</text>
+  <text x="190" y="133" text-anchor="middle" font-size="9" fill="#374151">  path,</text>
+  <text x="190" y="146" text-anchor="middle" font-size="9" fill="#374151">  duration</text>
+  <text x="190" y="160" text-anchor="middle" font-size="9" fill="#374151">)</text>
+
+  <!-- Arrow right -->
+  <line x1="252" y1="105" x2="282" y2="105" stroke="#D97706" stroke-width="2" marker-end="url(#mw2)"/>
+  <text x="267" y="99" text-anchor="middle" font-size="9" fill="#D97706">req</text>
+
+  <!-- Middleware 2: Auth -->
+  <rect x="284" y="68" width="120" height="100" rx="8" fill="#EDE9FE" stroke="#7C3AED" stroke-width="2"/>
+  <text x="344" y="90" text-anchor="middle" font-size="11" fill="#5B21B6" font-weight="bold">Auth</text>
+  <text x="344" y="107" text-anchor="middle" font-size="9" fill="#374151">r.Header.Get(</text>
+  <text x="344" y="120" text-anchor="middle" font-size="9" fill="#374151">  "Authorization"</text>
+  <text x="344" y="133" text-anchor="middle" font-size="9" fill="#374151">)</text>
+  <text x="344" y="150" text-anchor="middle" font-size="9" fill="#DC2626">401 se invalido</text>
+  <text x="344" y="163" text-anchor="middle" font-size="9" fill="#374151">ou continua</text>
+
+  <!-- Arrow right -->
+  <line x1="406" y1="105" x2="436" y2="105" stroke="#7C3AED" stroke-width="2" marker-end="url(#mw3)"/>
+  <text x="421" y="99" text-anchor="middle" font-size="9" fill="#7C3AED">req</text>
+
+  <!-- Middleware 3: RateLimit -->
+  <rect x="438" y="68" width="120" height="100" rx="8" fill="#FEE2E2" stroke="#DC2626" stroke-width="2"/>
+  <text x="498" y="90" text-anchor="middle" font-size="11" fill="#991B1B" font-weight="bold">RateLimit</text>
+  <text x="498" y="107" text-anchor="middle" font-size="9" fill="#374151">limiter.Allow()</text>
+  <text x="498" y="124" text-anchor="middle" font-size="9" fill="#DC2626">429 se excedeu</text>
+  <text x="498" y="141" text-anchor="middle" font-size="9" fill="#374151">ou continua</text>
+  <text x="498" y="158" text-anchor="middle" font-size="9" fill="#9CA3AF">X-RateLimit-*</text>
+
+  <!-- Arrow right -->
+  <line x1="560" y1="105" x2="590" y2="105" stroke="#DC2626" stroke-width="2" marker-end="url(#mw4)"/>
+  <text x="575" y="99" text-anchor="middle" font-size="9" fill="#DC2626">req</text>
+
+  <!-- Handler -->
+  <rect x="592" y="68" width="120" height="100" rx="8" fill="#DCFCE7" stroke="#15803D" stroke-width="2"/>
+  <text x="652" y="90" text-anchor="middle" font-size="11" fill="#166534" font-weight="bold">Handler</text>
+  <text x="652" y="108" text-anchor="middle" font-size="9" fill="#374151">logica</text>
+  <text x="652" y="122" text-anchor="middle" font-size="9" fill="#374151">de negocio</text>
+  <text x="652" y="142" text-anchor="middle" font-size="9" fill="#15803D">w.WriteHeader</text>
+  <text x="652" y="156" text-anchor="middle" font-size="9" fill="#15803D">w.Write(body)</text>
+
+  <!-- Response arrows (coming back, below) -->
+  <line x1="652" y1="170" x2="652" y2="190" stroke="#15803D" stroke-width="1.5"/>
+  <line x1="652" y1="190" x2="56" y2="190" stroke="#6B7280" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <line x1="56" y1="190" x2="56" y2="150" stroke="#6B7280" stroke-width="1.5" marker-end="url(#mwback)"/>
+  <text x="380" y="205" text-anchor="middle" font-size="9" fill="#6B7280">response volta pela mesma cadeia (cada middleware pode modificar antes de retornar)</text>
+
+  <!-- next.ServeHTTP label -->
+  <text x="267" y="178" text-anchor="middle" font-size="9" fill="#D97706">next.ServeHTTP(w, r)</text>
+  <text x="421" y="178" text-anchor="middle" font-size="9" fill="#7C3AED">next.ServeHTTP(w, r)</text>
+  <text x="575" y="178" text-anchor="middle" font-size="9" fill="#DC2626">next.ServeHTTP(w, r)</text>
+
+  <text x="380" y="228" text-anchor="middle" font-size="10" fill="#9CA3AF">handlerFinal := Logger(Auth(RateLimit(mux)))</text>
+
+  <defs>
+    <marker id="mw1" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#1D4ED8"/></marker>
+    <marker id="mw2" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#D97706"/></marker>
+    <marker id="mw3" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#7C3AED"/></marker>
+    <marker id="mw4" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#DC2626"/></marker>
+    <marker id="mwback" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#6B7280"/></marker>
+  </defs>
+</svg>

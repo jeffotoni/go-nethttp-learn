@@ -1,0 +1,65 @@
+<svg viewBox="0 0 760 280" xmlns="http://www.w3.org/2000/svg" font-family="monospace, sans-serif">
+  <rect width="760" height="280" fill="#f8f9fa" rx="10"/>
+  <text x="380" y="26" text-anchor="middle" font-size="13" font-weight="bold" fill="#374151">Anatomia do Handler — w (ResponseWriter) e r (*Request)</text>
+
+  <!-- Client -->
+  <rect x="20" y="100" width="100" height="60" rx="8" fill="#1D4ED8"/>
+  <text x="70" y="128" text-anchor="middle" font-size="12" fill="white" font-weight="bold">Client</text>
+  <text x="70" y="145" text-anchor="middle" font-size="10" fill="#bfdbfe">curl / browser</text>
+
+  <!-- Arrow in -->
+  <line x1="122" y1="120" x2="198" y2="120" stroke="#1D4ED8" stroke-width="2" marker-end="url(#hin)"/>
+  <text x="160" y="114" text-anchor="middle" font-size="9" fill="#1D4ED8">HTTP Request</text>
+
+  <!-- r box -->
+  <rect x="200" y="78" width="160" height="120" rx="8" fill="#EDE9FE" stroke="#7C3AED" stroke-width="2"/>
+  <text x="280" y="100" text-anchor="middle" font-size="12" fill="#5B21B6" font-weight="bold">r *http.Request</text>
+  <text x="215" y="118" font-size="9" fill="#374151">r.Method   → GET</text>
+  <text x="215" y="132" font-size="9" fill="#374151">r.URL.Path → /users</text>
+  <text x="215" y="146" font-size="9" fill="#374151">r.Header   → map</text>
+  <text x="215" y="160" font-size="9" fill="#374151">r.Body     → io.Reader</text>
+  <text x="215" y="174" font-size="9" fill="#374151">r.Host     → domain</text>
+  <text x="280" y="191" text-anchor="middle" font-size="9" fill="#7C3AED" font-style="italic">leitura (entrada)</text>
+
+  <!-- Arrow r to handler -->
+  <line x1="362" y1="130" x2="398" y2="130" stroke="#7C3AED" stroke-width="1.5" marker-end="url(#hpur)"/>
+
+  <!-- Handler box -->
+  <rect x="400" y="68" width="180" height="140" rx="8" fill="#FFFBEB" stroke="#D97706" stroke-width="2"/>
+  <text x="490" y="90" text-anchor="middle" font-size="12" fill="#92400E" font-weight="bold">Handler</text>
+  <text x="490" y="108" text-anchor="middle" font-size="9" fill="#374151">func(w, r)</text>
+  <rect x="415" y="115" width="150" height="52" rx="4" fill="#FEF3C7"/>
+  <text x="490" y="132" text-anchor="middle" font-size="9" fill="#92400E">1. le r (entrada)</text>
+  <text x="490" y="147" text-anchor="middle" font-size="9" fill="#92400E">2. executa logica</text>
+  <text x="490" y="162" text-anchor="middle" font-size="9" fill="#92400E">3. escreve em w (saida)</text>
+  <text x="490" y="196" text-anchor="middle" font-size="9" fill="#D97706" font-style="italic">processa a requisicao</text>
+
+  <!-- Arrow handler to w -->
+  <line x1="582" y1="130" x2="618" y2="130" stroke="#D97706" stroke-width="1.5" marker-end="url(#hpuw)"/>
+
+  <!-- w box -->
+  <rect x="620" y="78" width="120" height="120" rx="8" fill="#DCFCE7" stroke="#15803D" stroke-width="2"/>
+  <text x="680" y="100" text-anchor="middle" font-size="11" fill="#166534" font-weight="bold">w ResponseWriter</text>
+  <text x="635" y="118" font-size="9" fill="#374151">1. Header().Set()</text>
+  <text x="635" y="133" font-size="9" fill="#374151">2. WriteHeader(200)</text>
+  <text x="635" y="148" font-size="9" fill="#374151">3. Write(body)</text>
+  <text x="680" y="168" text-anchor="middle" font-size="9" fill="#9CA3AF" font-style="italic">ordem importa!</text>
+  <text x="680" y="191" text-anchor="middle" font-size="9" fill="#15803D" font-style="italic">escrita (saida)</text>
+
+  <!-- Arrow out (response back to client) -->
+  <line x1="680" y1="200" x2="680" y2="230" stroke="#15803D" stroke-width="1.5"/>
+  <line x1="680" y1="230" x2="70" y2="230" stroke="#15803D" stroke-width="1.5"/>
+  <line x1="70" y1="230" x2="70" y2="162" stroke="#15803D" stroke-width="1.5" marker-end="url(#hout)"/>
+  <text x="380" y="246" text-anchor="middle" font-size="9" fill="#15803D">HTTP Response: status + headers + body</text>
+
+  <!-- ServeMux label -->
+  <rect x="155" y="212" width="450" height="22" rx="4" fill="white" stroke="#9CA3AF" stroke-width="1" stroke-dasharray="4,3"/>
+  <text x="380" y="227" text-anchor="middle" font-size="9" fill="#6B7280">ServeMux roteia a request para o handler correto antes de chegar em (w, r)</text>
+
+  <defs>
+    <marker id="hin" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#1D4ED8"/></marker>
+    <marker id="hpur" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#7C3AED"/></marker>
+    <marker id="hpuw" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#D97706"/></marker>
+    <marker id="hout" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#15803D"/></marker>
+  </defs>
+</svg>

@@ -1,0 +1,40 @@
+<svg viewBox="0 0 720 200" xmlns="http://www.w3.org/2000/svg" font-family="monospace, sans-serif">
+  <rect width="720" height="200" fill="#f8f9fa" rx="10"/>
+  <text x="360" y="28" text-anchor="middle" font-size="13" font-weight="bold" fill="#444">WebSocket — Conexao Bidirecional Persistente</text>
+
+  <!-- Client -->
+  <rect x="40" y="70" width="120" height="60" rx="8" fill="#1D4ED8"/>
+  <text x="100" y="97" text-anchor="middle" font-size="12" fill="white" font-weight="bold">Client</text>
+  <text x="100" y="113" text-anchor="middle" font-size="10" fill="#bfdbfe">browser / app</text>
+
+  <!-- Server -->
+  <rect x="560" y="70" width="120" height="60" rx="8" fill="#15803D"/>
+  <text x="620" y="97" text-anchor="middle" font-size="12" fill="white" font-weight="bold">Server</text>
+  <text x="620" y="113" text-anchor="middle" font-size="10" fill="#d1fae5">ws handler</text>
+
+  <!-- Connection tunnel -->
+  <rect x="200" y="78" width="320" height="44" rx="20" fill="#EDE9FE" stroke="#7C3AED" stroke-width="2"/>
+  <text x="360" y="97" text-anchor="middle" font-size="11" fill="#5B21B6" font-weight="bold">Conexao Persistente (TCP)</text>
+  <text x="360" y="112" text-anchor="middle" font-size="10" fill="#5B21B6">Upgrade: websocket · Full-Duplex</text>
+
+  <!-- Bidirectional arrows inside tunnel -->
+  <line x1="215" y1="92" x2="505" y2="92" stroke="#7C3AED" stroke-width="1.5" marker-end="url(#wsarr)"/>
+  <line x1="505" y1="107" x2="215" y2="107" stroke="#7C3AED" stroke-width="1.5" marker-end="url(#wsarr2)"/>
+
+  <!-- Handshake note -->
+  <rect x="240" y="140" width="240" height="32" rx="6" fill="white" stroke="#D97706" stroke-width="1"/>
+  <text x="360" y="153" text-anchor="middle" font-size="10" fill="#92400E" font-weight="bold">1. HTTP Upgrade Handshake</text>
+  <text x="360" y="166" text-anchor="middle" font-size="10" fill="#92400E">2. Protocolo muda de HTTP para WS</text>
+
+  <!-- Connect client to tunnel -->
+  <line x1="160" y1="100" x2="198" y2="100" stroke="#1D4ED8" stroke-width="2"/>
+  <!-- Connect tunnel to server -->
+  <line x1="522" y1="100" x2="558" y2="100" stroke="#15803D" stroke-width="2"/>
+
+  <text x="360" y="188" text-anchor="middle" font-size="10" fill="#6B7280">Mensagens fluem nos dois sentidos sem nova requisicao HTTP</text>
+
+  <defs>
+    <marker id="wsarr" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#7C3AED"/></marker>
+    <marker id="wsarr2" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#7C3AED"/></marker>
+  </defs>
+</svg>

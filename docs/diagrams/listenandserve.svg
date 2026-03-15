@@ -1,0 +1,77 @@
+<svg viewBox="0 0 760 260" xmlns="http://www.w3.org/2000/svg" font-family="monospace, sans-serif">
+  <rect width="760" height="260" fill="#f8f9fa" rx="10"/>
+  <text x="380" y="26" text-anchor="middle" font-size="13" font-weight="bold" fill="#374151">Fluxo do ListenAndServe — do TCP ao Handler</text>
+
+  <!-- TCP Layer -->
+  <rect x="20" y="55" width="100" height="150" rx="8" fill="#FEE2E2" stroke="#DC2626" stroke-width="1.5"/>
+  <text x="70" y="78" text-anchor="middle" font-size="10" fill="#991B1B" font-weight="bold">TCP</text>
+  <text x="70" y="96" text-anchor="middle" font-size="9" fill="#991B1B">:8080</text>
+  <text x="70" y="114" text-anchor="middle" font-size="9" fill="#991B1B">accept()</text>
+  <text x="70" y="132" text-anchor="middle" font-size="9" fill="#991B1B">conn</text>
+  <text x="70" y="150" text-anchor="middle" font-size="9" fill="#991B1B">goroutine</text>
+  <text x="70" y="168" text-anchor="middle" font-size="9" fill="#991B1B">por conn</text>
+  <text x="70" y="196" text-anchor="middle" font-size="9" fill="#9CA3AF" font-style="italic">net.Listener</text>
+
+  <!-- Arrow -->
+  <line x1="122" y1="130" x2="158" y2="130" stroke="#DC2626" stroke-width="2" marker-end="url(#la1)"/>
+
+  <!-- ListenAndServe box -->
+  <rect x="160" y="55" width="140" height="150" rx="8" fill="#FEF3C7" stroke="#D97706" stroke-width="2"/>
+  <text x="230" y="78" text-anchor="middle" font-size="10" fill="#92400E" font-weight="bold">ListenAndServe</text>
+  <rect x="173" y="86" width="115" height="30" rx="4" fill="#FFFBEB"/>
+  <text x="230" y="102" text-anchor="middle" font-size="9" fill="#92400E">http.Server{}</text>
+  <text x="230" y="113" text-anchor="middle" font-size="9" fill="#92400E">Addr: ":8080"</text>
+  <text x="230" y="135" text-anchor="middle" font-size="9" fill="#374151">le HTTP da conn</text>
+  <text x="230" y="150" text-anchor="middle" font-size="9" fill="#374151">monta Request</text>
+  <text x="230" y="165" text-anchor="middle" font-size="9" fill="#374151">cria ResponseWriter</text>
+  <text x="230" y="196" text-anchor="middle" font-size="9" fill="#9CA3AF" font-style="italic">net/http.Server</text>
+
+  <!-- Arrow -->
+  <line x1="302" y1="130" x2="338" y2="130" stroke="#D97706" stroke-width="2" marker-end="url(#la2)"/>
+
+  <!-- ServeMux box -->
+  <rect x="340" y="55" width="140" height="150" rx="8" fill="#EDE9FE" stroke="#7C3AED" stroke-width="2"/>
+  <text x="410" y="78" text-anchor="middle" font-size="10" fill="#5B21B6" font-weight="bold">ServeMux</text>
+  <text x="410" y="98" text-anchor="middle" font-size="9" fill="#374151">GET /users</text>
+  <line x1="355" y1="104" x2="475" y2="104" stroke="#7C3AED" stroke-width="0.5"/>
+  <text x="410" y="120" text-anchor="middle" font-size="9" fill="#374151">POST /users</text>
+  <line x1="355" y1="126" x2="475" y2="126" stroke="#7C3AED" stroke-width="0.5"/>
+  <text x="410" y="142" text-anchor="middle" font-size="9" fill="#374151">DELETE /users/{id}</text>
+  <line x1="355" y1="148" x2="475" y2="148" stroke="#7C3AED" stroke-width="0.5"/>
+  <text x="410" y="164" text-anchor="middle" font-size="9" fill="#374151">...</text>
+  <text x="410" y="196" text-anchor="middle" font-size="9" fill="#9CA3AF" font-style="italic">roteamento por pattern</text>
+
+  <!-- Arrow -->
+  <line x1="482" y1="130" x2="518" y2="130" stroke="#7C3AED" stroke-width="2" marker-end="url(#la3)"/>
+
+  <!-- Handler box -->
+  <rect x="520" y="55" width="140" height="150" rx="8" fill="#DCFCE7" stroke="#15803D" stroke-width="2"/>
+  <text x="590" y="78" text-anchor="middle" font-size="10" fill="#166534" font-weight="bold">Handler</text>
+  <text x="590" y="98" text-anchor="middle" font-size="9" fill="#374151">func(w, r)</text>
+  <rect x="533" y="106" width="115" height="50" rx="4" fill="#f0fdf4"/>
+  <text x="590" y="122" text-anchor="middle" font-size="9" fill="#166534">w.Header().Set()</text>
+  <text x="590" y="137" text-anchor="middle" font-size="9" fill="#166534">w.WriteHeader(200)</text>
+  <text x="590" y="152" text-anchor="middle" font-size="9" fill="#166534">w.Write(body)</text>
+  <text x="590" y="172" text-anchor="middle" font-size="9" fill="#374151">logica de negocio</text>
+  <text x="590" y="196" text-anchor="middle" font-size="9" fill="#9CA3AF" font-style="italic">ServeHTTP(w, r)</text>
+
+  <!-- Arrow -->
+  <line x1="662" y1="130" x2="698" y2="130" stroke="#15803D" stroke-width="2" marker-end="url(#la4)"/>
+
+  <!-- Client response -->
+  <rect x="700" y="95" width="48" height="70" rx="8" fill="#DBEAFE" stroke="#1D4ED8" stroke-width="1.5"/>
+  <text x="724" y="118" text-anchor="middle" font-size="9" fill="#1e3a8a" font-weight="bold">Client</text>
+  <text x="724" y="134" text-anchor="middle" font-size="9" fill="#1e3a8a">200</text>
+  <text x="724" y="148" text-anchor="middle" font-size="9" fill="#1e3a8a">JSON</text>
+
+  <!-- Flow label -->
+  <text x="380" y="228" text-anchor="middle" font-size="10" fill="#6B7280">Cada conexao TCP roda em sua propria goroutine — concorrencia nativa do Go</text>
+  <text x="380" y="245" text-anchor="middle" font-size="10" fill="#9CA3AF">http.ListenAndServe(":8080", mux)  →  loop: accept → goroutine → parse → route → handle → respond</text>
+
+  <defs>
+    <marker id="la1" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#DC2626"/></marker>
+    <marker id="la2" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#D97706"/></marker>
+    <marker id="la3" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#7C3AED"/></marker>
+    <marker id="la4" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#15803D"/></marker>
+  </defs>
+</svg>

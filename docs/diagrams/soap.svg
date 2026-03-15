@@ -1,0 +1,56 @@
+<svg viewBox="0 0 720 180" xmlns="http://www.w3.org/2000/svg" font-family="monospace, sans-serif">
+  <!-- background -->
+  <rect width="720" height="180" fill="#f8f9fa" rx="10"/>
+
+  <!-- title -->
+  <text x="360" y="28" text-anchor="middle" font-size="13" font-weight="bold" fill="#444">SOAP — Simple Object Access Protocol</text>
+
+  <!-- Client box -->
+  <rect x="40" y="55" width="120" height="50" rx="8" fill="#1D4ED8" />
+  <text x="100" y="85" text-anchor="middle" font-size="13" fill="white" font-weight="bold">Client</text>
+
+  <!-- Server box -->
+  <rect x="560" y="55" width="120" height="50" rx="8" fill="#15803D" />
+  <text x="620" y="85" text-anchor="middle" font-size="13" fill="white" font-weight="bold">Server</text>
+
+  <!-- WSDL box (contract) -->
+  <rect x="270" y="120" width="180" height="38" rx="6" fill="#7C3AED" opacity="0.15" stroke="#7C3AED" stroke-width="1"/>
+  <text x="360" y="136" text-anchor="middle" font-size="11" fill="#7C3AED" font-weight="bold">WSDL Contract</text>
+  <text x="360" y="151" text-anchor="middle" font-size="10" fill="#7C3AED">define operacoes e tipos</text>
+
+  <!-- Envelope box (middle) -->
+  <rect x="255" y="52" width="210" height="56" rx="6" fill="#FEF3C7" stroke="#D97706" stroke-width="1.5"/>
+  <text x="360" y="72" text-anchor="middle" font-size="11" fill="#92400E" font-weight="bold">SOAP Envelope (XML)</text>
+  <text x="360" y="88" text-anchor="middle" font-size="10" fill="#92400E">Header + Body + Fault</text>
+  <text x="360" y="101" text-anchor="middle" font-size="10" fill="#92400E">sobre HTTP/SMTP/TCP</text>
+
+  <!-- Arrow client -> envelope -->
+  <line x1="160" y1="80" x2="253" y2="80" stroke="#1D4ED8" stroke-width="2" marker-end="url(#arrowB)"/>
+  <!-- Arrow envelope -> server -->
+  <line x1="467" y1="80" x2="558" y2="80" stroke="#15803D" stroke-width="2" marker-end="url(#arrowG)"/>
+  <!-- Arrow server -> envelope (response) -->
+  <line x1="558" y1="90" x2="467" y2="90" stroke="#15803D" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arrowG2)"/>
+  <!-- Arrow client -> envelope (response receive) -->
+  <line x1="253" y1="90" x2="160" y2="90" stroke="#1D4ED8" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arrowB2)"/>
+
+  <!-- Labels -->
+  <text x="205" y="74" text-anchor="middle" font-size="10" fill="#1D4ED8">request</text>
+  <text x="513" y="74" text-anchor="middle" font-size="10" fill="#15803D">request</text>
+  <text x="513" y="104" text-anchor="middle" font-size="10" fill="#15803D">response</text>
+  <text x="205" y="104" text-anchor="middle" font-size="10" fill="#1D4ED8">response</text>
+
+  <defs>
+    <marker id="arrowB" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#1D4ED8"/>
+    </marker>
+    <marker id="arrowB2" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#1D4ED8"/>
+    </marker>
+    <marker id="arrowG" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#15803D"/>
+    </marker>
+    <marker id="arrowG2" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#15803D"/>
+    </marker>
+  </defs>
+</svg>
