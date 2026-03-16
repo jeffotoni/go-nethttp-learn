@@ -93,8 +93,7 @@ Developed by **Jefferson Otoni Lima (Jeffotoni)**, Senior Software Engineer and 
 
 | Channel | Link | Objective |
 |---|---|---|
-| Podcast | [What do I need to know about Backend?](https://youtu.be/_E20rA8bWGw) | Review concepts in audio format |
-| Podcast | [Diving into backend](https://youtu.be/fJFQk-yFNxg) | Reinforce the conceptual context of the material |
+| Podcast | [Diving into backend](https://youtu.be/uk1hwBAKGLc) | Reinforce the conceptual context of the material |
 | Q&A Chat | [NotebookLM, Manual Chat](https://notebooklm.google.com/notebook/c50bab62-0214-4b1a-9d53-78079ffc9fe6/preview) | Ask questions and reinforce content |
 | Presentation | [Manual's Google Slides](https://docs.google.com/presentation/d/1To-ymSRme7iyUKflu2ctDfyrlY0NjaRnjKYCHQpu6eE/edit?usp=sharing) | Visual support for study and class |
 | LinkedIn | [linkedin.com/in/jeffotoni](https://www.linkedin.com/in/jeffotoni) | Author's professional profile |
