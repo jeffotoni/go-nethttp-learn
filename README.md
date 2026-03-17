@@ -94,12 +94,12 @@ Developed by **Jefferson Otoni Lima (Jeffotoni)**, Senior Software Engineer and 
 | Channel | Link | Objective |
 |---|---|---|
 | Podcast | [Diving into backend](https://youtu.be/uk1hwBAKGLc) | Reinforce the conceptual context of the material |
-| Q&A Chat | [NotebookLM, Manual Chat](https://notebooklm.google.com/notebook/c50bab62-0214-4b1a-9d53-78079ffc9fe6/preview) | Ask questions and reinforce content |
-| Presentation | [Manual's Google Slides](https://docs.google.com/presentation/d/1To-ymSRme7iyUKflu2ctDfyrlY0NjaRnjKYCHQpu6eE/edit?usp=sharing) | Visual support for study and class |
+| Q&A Chat | [NotebookLM, Manual Chat](https://notebooklm.google.com/notebook/92432974-26e6-4cb7-b4e1-3af354a917a9/preview) | Ask questions and reinforce content |
+| Presentation | [Manual's Google Slides](https://docs.google.com/presentation/d/14E33srSZj-g5k0nauklPs611b4tvJNKwm1G4hLDfIxM/edit?usp=sharing) | Visual support for study and class |
 | LinkedIn | [linkedin.com/in/jeffotoni](https://www.linkedin.com/in/jeffotoni) | Author's professional profile |
 | GitHub | [github.com/jeffotoni](https://github.com/jeffotoni) | Author's repositories and projects |
 | Go Roadmap | [github.com/jeffotoni/groadmap](https://github.com/jeffotoni/groadmap) | Macro view of study and evolution in Go |
-| Site | [gonethttplearn](https://jeffotoni.github.io/gonethttplearn/) | Version of the repository published as a website |
+| Site | [go-nethttp-learn](https://jeffotoni.github.io/gonethttplearn/) | Version of the repository published as a website |
 
 ---
 
