@@ -95,7 +95,7 @@ Developed by **Jefferson Otoni Lima (Jeffotoni)**, Senior Software Engineer and 
 |---|---|---|
 | Podcast | [Diving into backend](https://youtu.be/uk1hwBAKGLc) | Reinforce the conceptual context of the material |
 | Q&A Chat | [NotebookLM, Manual Chat](https://notebooklm.google.com/notebook/92432974-26e6-4cb7-b4e1-3af354a917a9/preview) | Ask questions and reinforce content |
-| Presentation | [Manual's Google Slides](https://docs.google.com/presentation/d/14E33srSZj-g5k0nauklPs611b4tvJNKwm1G4hLDfIxM/edit?usp=sharing) | Visual support for study and class |
+| Presentation | [Manual's Google Slides](https://docs.google.com/presentation/d/1Nq6XQDOGVR1E2pGxbVhDKq___I023y7NVYJ-v6QtLUU/edit?usp=sharing) | Visual support for study and class |
 | LinkedIn | [linkedin.com/in/jeffotoni](https://www.linkedin.com/in/jeffotoni) | Author's professional profile |
 | GitHub | [github.com/jeffotoni](https://github.com/jeffotoni) | Author's repositories and projects |
 | Go Roadmap | [github.com/jeffotoni/groadmap](https://github.com/jeffotoni/groadmap) | Macro view of study and evolution in Go |
