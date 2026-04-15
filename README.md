@@ -103,19 +103,19 @@ npx serve .
 
 ## Content Track
 
-| Stage | Theme |
-|:---:|---|
-| `1` | Backend fundamentals, web services, and client-server architecture |
-| `2` | HTTP, connections, keep-alive, and protocol stack |
-| `3` | REST, resources, API semantics, and maturity levels |
-| `4` | Servers, reverse proxy, serialization, and infrastructure context |
-| `5` | Security: authentication, authorization, HTTPS, JWT, and rate limiting |
-| `6` | Observability: structured logs, metrics, and distributed tracing |
-| `7` | Contract design, versioning, and API documentation |
-| `8` | Overview of Go for building APIs |
-| `9` | Fundamentals of `net/http` |
-| `10` | Handlers, `ServeMux`, `Server`, and request/response flow |
-| `11` | API server, security, and local execution with Docker |
+| Stage | Theme | Status |
+|:---:|---|:---:|
+| `1` | Backend fundamentals, web services, and client-server architecture | **OK** |
+| `2` | HTTP, connections, keep-alive, and protocol stack | **OK** |
+| `3` | REST, resources, API semantics, and maturity levels | **OK** |
+| `4` | Servers, reverse proxy, serialization, and infrastructure context | **OK** |
+| `5` | Security: authentication, authorization, HTTPS, JWT, and rate limiting | **Partial** (soon) |
+| `6` | Observability: structured logs, metrics, and distributed tracing | **Partial** (soon) |
+| `7` | Contract design, versioning, and API documentation | **OK** |
+| `8` | Overview of Go for building APIs | **OK** |
+| `9` | Fundamentals of `net/http` | **OK** |
+| `10` | Handlers, `ServeMux`, `Server`, and request/response flow | **OK** |
+| `11` | API server, security, and local execution with Docker | **OK** |
 
 ---
 

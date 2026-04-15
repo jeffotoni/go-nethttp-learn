@@ -103,19 +103,19 @@ npx serve .
 
 ## Ruta de Contenido
 
-| Etapa | Tema |
-|:---:|---|
-| `1` | Fundamentos de backend, servicios web y arquitectura cliente-servidor |
-| `2` | HTTP, conexiones, keep-alive y pila de protocolos |
-| `3` | REST, recursos, semántica de API y niveles de madurez |
-| `4` | Servidores, proxy inverso, serialización y contexto de infraestructura |
-| `5` | Seguridad: autenticación, autorización, HTTPS, JWT y rate limiting |
-| `6` | Observabilidad: logs estructurados, métricas y trazado distribuido |
-| `7` | Diseño de contratos, versionado y documentación de API |
-| `8` | Visión general de Go para la construcción de APIs |
-| `9` | Fundamentos de `net/http` |
-| `10` | Manejadores, `ServeMux`, `Server` y flujo de solicitud/respuesta |
-| `11` | Servidor API, seguridad y ejecución local con Docker |
+| Etapa | Tema | Estado |
+|:---:|---|:---:|
+| `1` | Fundamentos de backend, servicios web y arquitectura cliente-servidor | **OK** |
+| `2` | HTTP, conexiones, keep-alive y pila de protocolos | **OK** |
+| `3` | REST, recursos, semántica de API y niveles de madurez | **OK** |
+| `4` | Servidores, proxy inverso, serialización y contexto de infraestructura | **OK** |
+| `5` | Seguridad: autenticación, autorización, HTTPS, JWT y rate limiting | **Parcial** (pronto) |
+| `6` | Observabilidad: logs estructurados, métricas y trazado distribuido | **Parcial** (pronto) |
+| `7` | Diseño de contratos, versionado y documentación de API | **OK** |
+| `8` | Visión general de Go para la construcción de APIs | **OK** |
+| `9` | Fundamentos de `net/http` | **OK** |
+| `10` | Manejadores, `ServeMux`, `Server` y flujo de solicitud/respuesta | **OK** |
+| `11` | Servidor API, seguridad y ejecución local con Docker | **OK** |
 
 ---
 
@@ -124,7 +124,7 @@ npx serve .
 | Canal | Enlace | Objetivo |
 |---|---|---|
 | Podcast | [Diving into backend](https://youtu.be/uk1hwBAKGLc) | Reforzar el contexto conceptual del material |
-| NotebookLM | [NotebookLM, Manual Chat](https://notebooklm.google.com/notebook/0421b1d1-9c27-415a-a3d2-bc83ce397b1f) | Pregunta, explora y aprende a través de chat, presentaciones, podcasts y más |
+| NotebookLM | [NotebookLM](https://notebooklm.google.com/notebook/b5034af9-5e49-462e-86bf-23366c2243a1) | Pregunta, explora y aprende a través de chat, presentaciones, podcasts y más |
 | Go Bootcamp | [Trilha completa de aprendizado](https://gobootcamp.jeffotoni.com/br/index.html) | Curso completo y trilha de Go por Jeffotoni |
 | LinkedIn | [linkedin.com/in/jeffotoni](https://www.linkedin.com/in/jeffotoni) | Perfil profesional del autor |
 | GitHub | [github.com/jeffotoni](https://github.com/jeffotoni) | Repositorios y proyectos del autor |
