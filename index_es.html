@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Backend, HTTP and API Architecture | Go net/http Learn</title>
+    <title>Arquitectura de Backend, HTTP y API | Go net/http Learn</title>
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -24,7 +24,7 @@
                 <select id="localePicker" class="btn-control">
                     <option value="en">🇺🇸 English</option>
                     <option value="pt-BR">🇧🇷 Português</option>
-                    <option value="es">🇪🇸 Español</option>
+                    <option value="es" selected>🇪🇸 Español</option>
                 </select>
                 <button class="theme-toggle btn-control" onclick="toggleTheme()">☀️ Light</button>
             </div>
@@ -35,16 +35,16 @@
         <!-- Hero Section -->
         <section class="hero">
             <div class="container">
-                <h1>Backend, HTTP and API Architecture</h1>
-                <p class="hero-subtitle">From Web Fundamentals to Building with Go’s net/http</p>
+                <h1>Arquitectura de Backend, HTTP y API</h1>
+                <p class="hero-subtitle">Desde los fundamentos de la comunicación web hasta la implementación con net/http en Go</p>
                 <div class="badges">
                     <img src="https://img.shields.io/badge/Go-1.22%2B-00ADD8?style=flat-square&logo=go&logoColor=white" alt="Go">
-                    <img src="https://img.shields.io/badge/status-in%20development-F59E0B?style=flat-square" alt="Status">
+                    <img src="https://img.shields.io/badge/status-en%20desarrollo-F59E0B?style=flat-square" alt="Status">
                     <img src="https://img.shields.io/badge/license-MIT-10B981?style=flat-square" alt="License">
                     <img src="https://img.shields.io/badge/author-jeffotoni-0EA5E9?style=flat-square&logo=github" alt="Author">
                 </div>
                 <blockquote style="max-width: 800px; margin: 2rem auto; padding: 1.5rem; background: rgba(0, 173, 216, 0.05); border-radius: 12px; border-left: 4px solid var(--neon-cyan); text-align: left;">
-                    <p style="font-size: 1.1rem; font-style: italic; color: var(--text-primary);">"A consistent backend is not born from endpoints or frameworks. It is born from a deep understanding of protocols, well-defined contracts, isolated business rules, state management, layered security, and operations thought out from the first commit. Code is a consequence. Decision is the foundation."</p>
+                    <p style="font-size: 1.1rem; font-style: italic; color: var(--text-primary);">"Un backend consistente no nace de los endpoints o los frameworks. Nace de una comprensión profunda de los protocolos, contratos bien definidos, reglas de negocio aisladas, gestión de estados, seguridad en capas y operaciones pensadas desde el primer commit. El código es una consecuencia. La decisión es el fundamento."</p>
                 </blockquote>
             </div>
         </section>
@@ -52,30 +52,30 @@
         <!-- Quick Start Section -->
         <section id="quick-start" style="background: rgba(0, 173, 216, 0.02); border-bottom: 1px solid var(--border-color);">
             <div class="container">
-                <h2 class="section-title">🚀 Quick Start</h2>
-                <p class="card-text" style="margin-bottom: 2rem;">Clone the repository and host this documentation locally in seconds.</p>
+                <h2 class="section-title">🚀 Inicio Rápido</h2>
+                <p class="card-text" style="margin-bottom: 2rem;">Obtén el proyecto y aloja esta documentación localmente en segundos.</p>
                 
                 <div class="card" style="margin-bottom: 2rem; border-style: dashed;">
-                    <div class="card-title">1. Clone the repository</div>
+                    <div class="card-title">1. Clonar el repositorio</div>
                     <pre class="language-bash"><code>git clone https://github.com/jeffotoni/go-nethttp-learn
 cd go-nethttp-learn</code></pre>
                 </div>
 
-                <div class="card-title" style="margin-bottom: 1rem;">2. Host locally (Port 3000)</div>
+                <div class="card-title" style="margin-bottom: 1rem;">2. Alojar la documentación localmente (Puerto 3000)</div>
                 <div class="card-grid">
                     <div class="card">
                         <div class="card-title">🐹 Go</div>
-                        <p class="card-text">Using our built-in static server.</p>
+                        <p class="card-text">Usando nuestro servidor estático integrado.</p>
                         <pre class="language-bash"><code>go run static/main.go</code></pre>
                     </div>
                     <div class="card">
                         <div class="card-title">🐍 Python</div>
-                        <p class="card-text">Standard library HTTP server.</p>
+                        <p class="card-text">Servidor HTTP de la biblioteca estándar.</p>
                         <pre class="language-bash"><code>python3 -m http.server 3000</code></pre>
                     </div>
                     <div class="card">
                         <div class="card-title">📦 Node.js</div>
-                        <p class="card-text">Using npx serve utility.</p>
+                        <p class="card-text">Usando la utilidad npx serve.</p>
                         <pre class="language-bash"><code>npx serve .</code></pre>
                     </div>
                 </div>
@@ -84,37 +84,37 @@ cd go-nethttp-learn</code></pre>
 
         <!-- Sticky Nav -->
         <nav class="category-nav">
-            <a href="#about" class="category-pill">About</a>
-            <a href="#fundamentals" class="category-pill">1. Fundamentals</a>
-            <a href="#go-overview" class="category-pill">2. Go Overview</a>
+            <a href="#about" class="category-pill">Acerca de</a>
+            <a href="#fundamentals" class="category-pill">1. Fundamentos</a>
+            <a href="#go-overview" class="category-pill">2. Visión General Go</a>
             <a href="#net-http" class="category-pill">3. net/http</a>
             <a href="#listenandserve" class="category-pill">4. Manual</a>
-            <a href="#server-api" class="category-pill">5. Server API</a>
+            <a href="#server-api" class="category-pill">5. API Server</a>
             <a href="#docker" class="category-pill">6. Docker</a>
         </nav>
 
         <div class="container">
             <!-- About Section -->
             <section id="about">
-                <h2 class="section-title">✦ About the Author</h2>
+                <h2 class="section-title">✦ Sobre el autor</h2>
                 <div class="card" style="margin-bottom: 2rem;">
                     <div class="card-title">Jefferson Otoni Lima (Jeffotoni)</div>
-                    <p class="card-text">Senior Software Engineer and Solutions Architect with over 22 years of experience. Specialist in API design, cloud-native architecture, and Go ecosystem. Creator of the Quick Framework and author of Go Bootcamp.</p>
+                    <p class="card-text">Ingeniero de Software Senior y Arquitecto de Soluciones con más de 22 años de experiencia. Especialista en diseño de APIs, arquitectura cloud-native y ecosistema de Go. Creador del Quick Framework y autor de Go Bootcamp.</p>
                 </div>
 
                 <h3 style="margin-bottom: 1rem;">Official Resources</h3>
                 <div class="card-grid">
                     <a href="https://youtu.be/uk1hwBAKGLc" class="card" target="_blank">
                         <div class="card-title">🎙️ Podcast</div>
-                        <div class="card-text">Diving into backend - Reinforce the conceptual context.</div>
+                        <div class="card-text">Diving into backend - Reforzar el contexto conceptual.</div>
                     </a>
                     <a href="https://notebooklm.google.com/notebook/0421b1d1-9c27-415a-a3d2-bc83ce397b1f" class="card" target="_blank">
                         <div class="card-title">💬 NotebookLM Manual Chat</div>
-                        <div class="card-text">Ask, explore, and learn through chat, presentations, podcasts, and more.</div>
+                        <div class="card-text">Pregunta, explora y aprende a través de chat, presentaciones, podcasts y más.</div>
                     </a>
                     <a href="https://gobootcamp.jeffotoni.com/br/index.html" class="card" target="_blank">
                         <div class="card-title">🚀 Go Bootcamp</div>
-                        <div class="card-text">Complete Go learning track by Jeffotoni.</div>
+                        <div class="card-text">Ruta completa de aprendizaje de Go por Jeffotoni.</div>
                     </a>
                     <a href="https://linkedin.com/in/jeffotoni" class="card" target="_blank">
                         <div class="card-title">🔗 LinkedIn</div>
@@ -133,29 +133,29 @@ cd go-nethttp-learn</code></pre>
 
             <!-- Fundamentals Section -->
             <section id="fundamentals">
-                <h2 class="section-title">1. Context: Web Services, REST, and Protocols</h2>
+                <h2 class="section-title">1. Contexto: Servicios Web, REST y Protocolos</h2>
                 
-                <h3>Web Services Overview</h3>
+                <h3>Visión General de los Servicios Web</h3>
                 <table>
                     <thead>
                         <tr>
-                            <th>Style</th>
-                            <th>Year</th>
-                            <th>Main Characteristic</th>
+                            <th>Estilo</th>
+                            <th>Año</th>
+                            <th>Característica Principal</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr><td>SOAP</td><td>1998</td><td>Rigid contract, XML, WSDL</td></tr>
-                        <tr><td>REST</td><td>2000</td><td>Architectural style over HTTP</td></tr>
-                        <tr><td>WebHooks</td><td>2007</td><td>Event-oriented HTTP callback</td></tr>
-                        <tr><td>WebSocket</td><td>2011</td><td>Bidirectional connection over HTTP</td></tr>
-                        <tr><td>SSE</td><td>2006</td><td>Server pushes events over HTTP</td></tr>
-                        <tr><td>GraphQL</td><td>2015</td><td>Client defines response fields</td></tr>
-                        <tr><td>gRPC</td><td>2015</td><td>RPC with Protobuf over HTTP/2</td></tr>
+                        <tr><td>SOAP</td><td>1998</td><td>Contrato rígido, XML, WSDL</td></tr>
+                        <tr><td>REST</td><td>2000</td><td>Estilo arquitectónico sobre HTTP</td></tr>
+                        <tr><td>WebHooks</td><td>2007</td><td>Callback HTTP orientado a eventos</td></tr>
+                        <tr><td>WebSocket</td><td>2011</td><td>Conexión bidireccional sobre HTTP</td></tr>
+                        <tr><td>SSE</td><td>2006</td><td>El servidor envía eventos sobre HTTP</td></tr>
+                        <tr><td>GraphQL</td><td>2015</td><td>El cliente define los campos de la respuesta</td></tr>
+                        <tr><td>gRPC</td><td>2015</td><td>RPC con Protobuf sobre HTTP/2</td></tr>
                     </tbody>
                 </table>
 
-                <h3 style="margin: 2rem 0 1rem;">Communication Diagrams</h3>
+                <h3 style="margin: 2rem 0 1rem;">Diagramas de Comunicación</h3>
                 <div class="card-grid">
                     <div class="card"><div class="card-title">SOAP</div><img src="docs/diagrams/soap.svg" alt="SOAP"></div>
                     <div class="card"><div class="card-title">REST</div><img src="docs/diagrams/rest.svg" alt="REST"></div>
@@ -166,83 +166,83 @@ cd go-nethttp-learn</code></pre>
                     <div class="card"><div class="card-title">GraphQL</div><img src="docs/diagrams/graphql.svg" alt="GraphQL"></div>
                 </div>
 
-                <h3>HTTP Evolution</h3>
+                <h3>Evolución de HTTP</h3>
                 <div class="card" style="margin: 1.5rem 0;">
                     <img src="docs/diagrams/keepalive.svg" alt="Keep Alive">
-                    <p class="card-text" style="text-align: center; margin-top: 1rem;">HTTP/1.1 introduced <strong>Keep-Alive</strong> by default, allowing multiple requests over a single TCP connection.</p>
+                    <p class="card-text" style="text-align: center; margin-top: 1rem;">HTTP/1.1 introdujo <strong>Keep-Alive</strong> por defecto, permitiendo múltiples solicitudes sobre una sola conexión TCP.</p>
                 </div>
 
-                <h3>HTTP Status Codes</h3>
+                <h3>Códigos de Estado HTTP</h3>
                 <div class="card" style="margin-bottom: 1.5rem;">
-                    <p class="card-text">Status codes are grouped into five categories, each starting with a specific digit (1xx to 5xx).</p>
+                    <p class="card-text">Los códigos de estado se agrupan en cinco categorías, cada una comenzando con un dígito específico (1xx a 5xx).</p>
                 </div>
                 <table>
                     <thead>
                         <tr>
-                            <th>Category</th>
-                            <th>Meaning</th>
-                            <th>Common Examples</th>
+                            <th>Categoría</th>
+                            <th>Significado</th>
+                            <th>Ejemplos Comunes</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr><td><code>1xx</code></td><td>Informational</td><td>101 Switching Protocols</td></tr>
-                        <tr><td><code>2xx</code></td><td>Success</td><td>200 OK, 201 Created, 204 No Content</td></tr>
-                        <tr><td><code>3xx</code></td><td>Redirection</td><td>301 Moved Permanently, 302 Found</td></tr>
-                        <tr><td><code>4xx</code></td><td>Client Error</td><td>400 Bad Request, 401 Unauthorized, 404 Not Found</td></tr>
-                        <tr><td><code>5xx</code></td><td>Server Error</td><td>500 Internal Server Error, 503 Service Unavailable</td></tr>
+                        <tr><td><code>1xx</code></td><td>Informativo</td><td>101 Switching Protocols</td></tr>
+                        <tr><td><code>2xx</code></td><td>Éxito</td><td>200 OK, 201 Created, 204 No Content</td></tr>
+                        <tr><td><code>3xx</code></td><td>Redirección</td><td>301 Moved Permanently, 302 Found</td></tr>
+                        <tr><td><code>4xx</code></td><td>Error del Cliente</td><td>400 Bad Request, 401 Unauthorized, 404 Not Found</td></tr>
+                        <tr><td><code>5xx</code></td><td>Error del Servidor</td><td>500 Internal Server Error, 503 Service Unavailable</td></tr>
                     </tbody>
                 </table>
 
-                <h3>Richardson Maturity Model</h3>
+                <h3>Modelo de Madurez de Richardson</h3>
                 <img src="docs/diagrams/richardson.svg" alt="Richardson" style="margin: 2rem auto;">
                 <div class="card-grid">
-                    <div class="card"><div class="card-title">Level 0: POX</div><p class="card-text">HTTP as a tunnel (RPC).</p></div>
-                    <div class="card"><div class="card-title">Level 1: Resources</div><p class="card-text">Separate URIs for resources.</p></div>
-                    <div class="card"><div class="card-title">Level 2: Verbs + Status</div><p class="card-text">Correct use of GET, POST, PUT, DELETE.</p></div>
-                    <div class="card"><div class="card-title">Level 3: HATEOAS</div><p class="card-text">Hypermedia guides the client.</p></div>
+                    <div class="card"><div class="card-title">Nivel 0: POX</div><p class="card-text">HTTP como un túnel (RPC).</p></div>
+                    <div class="card"><div class="card-title">Nivel 1: Recursos</div><p class="card-text">URIs separadas para recursos.</p></div>
+                    <div class="card"><div class="card-title">Nivel 2: Verbos + Estado</div><p class="card-text">Uso correcto de GET, POST, PUT, DELETE.</p></div>
+                    <div class="card"><div class="card-title">Nivel 3: HATEOAS</div><p class="card-text">La hipermedia guía al cliente.</p></div>
                 </div>
             </section>
 
             <!-- Go Overview Section -->
             <section id="go-overview">
-                <h2 class="section-title">2. Overview of Go for APIs</h2>
+                <h2 class="section-title">2. Visión General de Go para APIs</h2>
                 <div class="card">
-                    <div class="card-title">Why Go for Backend?</div>
+                    <div class="card-title">¿Por qué Go para Backend?</div>
                     <ul style="padding-left: 1.5rem; color: var(--text-secondary);">
-                        <li>Strong standard library (<code>net/http</code>, <code>encoding/json</code>)</li>
-                        <li>Fast compilation and single binary deployment</li>
-                        <li>Native concurrency (goroutines & channels)</li>
-                        <li>High performance for low-latency APIs</li>
+                        <li>Biblioteca estándar sólida (<code>net/http</code>, <code>encoding/json</code>)</li>
+                        <li>Compilación rápida y despliegue de binario único</li>
+                        <li>Concurrencia nativa (goroutines y channels)</li>
+                        <li>Alto rendimiento para APIs de baja latencia</li>
                     </ul>
                 </div>
 
-                <h3 style="margin-top: 2rem;">Concurrency Theory</h3>
+                <h3 style="margin-top: 2rem;">Teoría de Concurrencia</h3>
                 <div class="card-grid full-width">
                     <div class="card">
                         <div class="card-title">Goroutines</div>
-                        <p class="card-text">Lightweight threads managed by the Go runtime.</p>
-<pre class="language-go"><code>go doWork() // Non-blocking execution</code></pre>
+                        <p class="card-text">Hilos ligeros gestionados por el runtime de Go.</p>
+<pre class="language-go"><code>go doWork() // Ejecución no bloqueante</code></pre>
                     </div>
                     <div class="card">
                         <div class="card-title">Channels</div>
-                        <p class="card-text">Pipes that connect concurrent goroutines for communication.</p>
+                        <p class="card-text">Conductos que conectan goroutines concurrentes para la comunicación.</p>
 <pre class="language-go"><code>ch := make(chan int)
 go func() { ch <- 42 }()
 val := <-ch</code></pre>
                     </div>
                 </div>
 
-                <h3 style="margin-top: 2rem;">Cross-compilation Examples</h3>
-<pre class="language-bash"><code># Compile for Linux AMD64 (from any OS)
+                <h3 style="margin-top: 2rem;">Ejemplos de Compilación Cruzada</h3>
+<pre class="language-bash"><code># Compilar para Linux AMD64 (desde cualquier SO)
 GOOS=linux GOARCH=amd64 go build -o server-linux main.go
 
-# Compile for Windows
+# Compilar para Windows
 GOOS=windows GOARCH=amd64 go build -o server.exe main.go
 
-# Compile for ARM (Raspberry Pi)
+# Compilar para ARM (Raspberry Pi)
 GOOS=linux GOARCH=arm64 go build -o server-arm main.go</code></pre>
 
-                <h3 style="margin-top: 2rem;">Official Language Keywords (25)</h3>
+                <h3 style="margin-top: 2rem;">Palabras Reservadas Oficiales del Lenguaje (25)</h3>
                 <table>
                     <tbody>
                         <tr><td><code>break</code></td><td><code>default</code></td><td><code>func</code></td><td><code>interface</code></td><td><code>select</code></td></tr>
@@ -256,20 +256,20 @@ GOOS=linux GOARCH=arm64 go build -o server-arm main.go</code></pre>
 
             <!-- net/http Section -->
             <section id="net-http">
-                <h2 class="section-title">3. net/http Fundamentals</h2>
+                <h2 class="section-title">3. Fundamentos de net/http</h2>
                 <img src="docs/diagrams/handler-anatomy.svg" alt="Handler Anatomy" style="margin-bottom: 2rem;">
                 
                 <div class="card-grid full-width">
                     <div class="card">
                         <div class="card-title">ResponseWriter (w)</div>
-                        <p class="card-text">Used to build the response. Order: <strong>Headers -> Status -> Body</strong>.</p>
+                        <p class="card-text">Se utiliza para construir la respuesta. Orden: <strong>Headers -> Status -> Body</strong>.</p>
 <pre class="language-go"><code>w.Header().Set("Content-Type", "application/json")
 w.WriteHeader(http.StatusCreated)
 w.Write([]byte(`{"ok":true}`))</code></pre>
                     </div>
                     <div class="card">
                         <div class="card-title">Request (r)</div>
-                        <p class="card-text">Contains all client data: Method, URL, Header, Body, PathValue.</p>
+                        <p class="card-text">Contiene todos los datos del cliente: Method, URL, Header, Body, PathValue.</p>
 <pre class="language-go"><code>id := r.PathValue("id")
 q := r.URL.Query().Get("search")
 body := r.Body</code></pre>
@@ -279,47 +279,47 @@ body := r.Body</code></pre>
 
             <!-- Manual Section -->
             <section id="listenandserve">
-                <h2 class="section-title">4. Practical Manual: ListenAndServe (Phase Zero)</h2>
+                <h2 class="section-title">4. Manual Práctico: ListenAndServe (Fase Cero)</h2>
                 <div class="card" style="margin: 1.5rem 0;"><img src="docs/diagrams/listenandserve.svg" alt="ListenAndServe Flow"></div>
 
-                <h3>Class reasoning line</h3>
+                <h3>Línea de razonamiento de la clase</h3>
                 <table>
                     <thead>
                         <tr>
-                            <th>Order</th>
-                            <th>Focus</th>
-                            <th>Result for the student</th>
+                            <th>Orden</th>
+                            <th>Enfoque</th>
+                            <th>Resultado para el estudiante</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr><td>1</td><td><code>HandleFunc</code> vs <code>HandlerFunc</code></td><td>Avoids common registration errors</td></tr>
-                        <tr><td>2</td><td>What <code>ListenAndServe</code> accepts</td><td>Knows how to pass <code>nil</code>, <code>HandlerFunc</code>, <code>ServeMux</code>, or custom type</td></tr>
-                        <tr><td>3</td><td>Base variations without custom <code>ServeMux</code></td><td>Masters the basic HTTP flow</td></tr>
-                        <tr><td>4</td><td>Reading the request</td><td>Extracts method, path, query, headers, body, <code>PathValue</code></td></tr>
-                        <tr><td>5</td><td>Writing the response</td><td>Knows the correct order: Headers -> Status -> Body</td></tr>
-                        <tr><td>6</td><td>Full CRUD examples</td><td>GET, POST, PUT, PATCH, DELETE with real cases</td></tr>
-                        <tr><td>7</td><td><code>http.Server</code> with timeouts</td><td>Configures server for production</td></tr>
-                        <tr><td>8</td><td>Middleware composition</td><td>Logger, Auth, chain of behavior</td></tr>
-                        <tr><td>9</td><td>Response standardization</td><td>Motivation for <code>writeJSON</code></td></tr>
-                        <tr><td>10</td><td>Graceful shutdown</td><td>Cleanly closes the server without losing requests</td></tr>
-                        <tr><td>11</td><td>Testing with <code>httptest</code></td><td>Tests handlers without starting a real server</td></tr>
+                        <tr><td>1</td><td><code>HandleFunc</code> vs <code>HandlerFunc</code></td><td>Evita errores comunes de registro</td></tr>
+                        <tr><td>2</td><td>Qué acepta <code>ListenAndServe</code></td><td>Sabe cómo pasar <code>nil</code>, <code>HandlerFunc</code>, <code>ServeMux</code> o tipo personalizado</td></tr>
+                        <tr><td>3</td><td>Variaciones base sin <code>ServeMux</code> personalizado</td><td>Domina el flujo HTTP básico</td></tr>
+                        <tr><td>4</td><td>Lectura de la solicitud</td><td>Extrae método, ruta, consulta, cabeceras, cuerpo, <code>PathValue</code></td></tr>
+                        <tr><td>5</td><td>Escritura de la respuesta</td><td>Conoce el orden correcto: Headers -> Status -> Body</td></tr>
+                        <tr><td>6</td><td>Ejemplos completos de CRUD</td><td>GET, POST, PUT, PATCH, DELETE con casos reales</td></tr>
+                        <tr><td>7</td><td><code>http.Server</code> con timeouts</td><td>Configura el servidor para producción</td></tr>
+                        <tr><td>8</td><td>Composición de Middleware</td><td>Logger, Auth, cadena de comportamiento</td></tr>
+                        <tr><td>9</td><td>Estandarización de respuestas</td><td>Motivación para <code>writeJSON</code></td></tr>
+                        <tr><td>10</td><td>Apagado elegante</td><td>Cierra el servidor limpiamente sin perder solicitudes</td></tr>
+                        <tr><td>11</td><td>Pruebas con <code>httptest</code></td><td>Prueba manejadores sin iniciar un servidor real</td></tr>
                     </tbody>
                 </table>
 
-                <h3>4.3 Base Variations</h3>
-                <h4>Example 4.3.1 - DefaultServeMux with HandleFunc</h4>
+                <h3>4.3 Variaciones Base</h3>
+                <h4>Ejemplo 4.3.1 - DefaultServeMux con HandleFunc</h4>
 <pre class="language-go"><code>http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
     w.Write([]byte("Home"))
 })
 log.Fatal(http.ListenAndServe(":8080", nil))</code></pre>
 
-                <h4>Example 4.3.2 - DefaultServeMux with Handle</h4>
+                <h4>Ejemplo 4.3.2 - DefaultServeMux con Handle</h4>
 <pre class="language-go"><code>http.Handle("/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
     w.Write([]byte("Home"))
 }))
 log.Fatal(http.ListenAndServe(":8080", nil))</code></pre>
 
-                <h4>Example 4.3.3 - Direct manual routing</h4>
+                <h4>Ejemplo 4.3.3 - Enrutamiento manual directo</h4>
 <pre class="language-go"><code>log.Fatal(http.ListenAndServe(":8080",
     http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
         switch r.URL.Path {
@@ -330,26 +330,26 @@ log.Fatal(http.ListenAndServe(":8080", nil))</code></pre>
     }),
 ))</code></pre>
 
-                <h3>4.4 Practical Examples</h3>
-                <h4>Example 4.4.1 - URL Parameters (r.URL.Query)</h4>
+                <h3>4.4 Ejemplos Prácticos</h3>
+                <h4>Ejemplo 4.4.1 - Parámetros de URL (r.URL.Query)</h4>
 <pre class="language-go"><code>http.HandleFunc("/hello", func(w http.ResponseWriter, r *http.Request) {
     name := r.URL.Query().Get("name")
     fmt.Fprintf(w, "Hello, %s!", name)
 })</code></pre>
 
-                <h4>Example 4.4.2 - JSON Response</h4>
+                <h4>Ejemplo 4.4.2 - Respuesta JSON</h4>
 <pre class="language-go"><code>http.HandleFunc("/api/user", func(w http.ResponseWriter, r *http.Request) {
     w.Header().Set("Content-Type", "application/json")
     json.NewEncoder(w).Encode(map[string]string{"name": "John", "role": "Developer"})
 })</code></pre>
 
-                <h4>Example 4.4.6 - r.PathValue (Go 1.22+)</h4>
+                <h4>Ejemplo 4.4.6 - r.PathValue (Go 1.22+)</h4>
 <pre class="language-go"><code>mux.HandleFunc("GET /users/{id}", func(w http.ResponseWriter, r *http.Request) {
     id := r.PathValue("id")
     fmt.Fprintf(w, `{"id":"%s"}`, id)
 })</code></pre>
 
-                <h4>4.7 Graceful Shutdown</h4>
+                <h4>4.7 Apagado Elegante (Graceful Shutdown)</h4>
 <pre class="language-go"><code>quit := make(chan os.Signal, 1)
 signal.Notify(quit, syscall.SIGINT, syscall.SIGTERM)
 <-quit
@@ -360,7 +360,7 @@ if err := srv.Shutdown(ctx); err != nil {
     log.Fatal("Shutdown failed:", err)
 }</code></pre>
 
-                <h4>4.9 Two Servers on Distinct Ports with Goroutines</h4>
+                <h4>4.9 Dos Servidores en Puertos Distintos con Goroutines</h4>
 <pre class="language-go"><code>func main() {
     mainServer := &http.Server{Addr: ":8080", Handler: newMainMux()}
     mockServer := &http.Server{Addr: ":3000", Handler: newMockMux()}
@@ -377,30 +377,30 @@ if err := srv.Shutdown(ctx); err != nil {
 
             <!-- Server API Section -->
             <section id="server-api">
-                <h2 class="section-title">5. Server API Architecture</h2>
+                <h2 class="section-title">5. Arquitectura de Servidor API</h2>
                 
-                <h3>5.2 Error and status map by scenario</h3>
+                <h3>5.2 Mapa de errores y estados por escenario</h3>
                 <table>
                     <thead>
                         <tr>
-                            <th>Scenario</th>
-                            <th>Status Code</th>
-                            <th>When to use</th>
+                            <th>Escenario</th>
+                            <th>Código de Estado</th>
+                            <th>Cuándo usar</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr><td>Invalid JSON</td><td><code>400</code></td><td>Malformed body</td></tr>
-                        <tr><td>Invalid / missing field</td><td><code>422</code></td><td>Valid body, but invalid business rule</td></tr>
-                        <tr><td>Incorrect Content-Type</td><td><code>415</code></td><td>Expected <code>application/json</code></td></tr>
-                        <tr><td>Resource not found</td><td><code>404</code></td><td>ID/path does not exist</td></tr>
-                        <tr><td>Method not allowed</td><td><code>405</code></td><td>Endpoint exists, method does not</td></tr>
-                        <tr><td>State conflict</td><td><code>409</code></td><td>Ex.: email already registered</td></tr>
-                        <tr><td>Internal error</td><td><code>500</code></td><td>Unexpected server failure</td></tr>
+                        <tr><td>JSON inválido</td><td><code>400</code></td><td>Cuerpo malformado</td></tr>
+                        <tr><td>Campo inválido / faltante</td><td><code>422</code></td><td>Cuerpo válido, pero regla de negocio inválida</td></tr>
+                        <tr><td>Content-Type incorrecto</td><td><code>415</code></td><td>Se esperaba <code>application/json</code></td></tr>
+                        <tr><td>Recurso no encontrado</td><td><code>404</code></td><td>El ID/ruta no existe</td></tr>
+                        <tr><td>Método no permitido</td><td><code>405</code></td><td>El endpoint existe, el método no</td></tr>
+                        <tr><td>Conflicto de estado</td><td><code>409</code></td><td>Ej.: correo ya registrado</td></tr>
+                        <tr><td>Error interno</td><td><code>500</code></td><td>Fallo inesperado del servidor</td></tr>
                     </tbody>
                 </table>
 
-                <h3>5.9 Documentation with OpenAPI</h3>
-                <p class="card-text">Example of serving a Swagger UI manually (escaped HTML):</p>
+                <h3>5.9 Documentación con OpenAPI</h3>
+                <p class="card-text">Ejemplo de servicio de una interfaz de Swagger manualmente (HTML escapado):</p>
 <pre class="language-go"><code>mux.HandleFunc("GET /docs", func(w http.ResponseWriter, r *http.Request) {
     w.Header().Set("Content-Type", "text/html")
     w.Write([]byte(`
@@ -423,9 +423,9 @@ if err := srv.Shutdown(ctx); err != nil {
 
             <!-- Docker Section -->
             <section id="docker">
-                <h2 class="section-title">6. Docker: Build and Run</h2>
+                <h2 class="section-title">6. Docker: Construcción y Ejecución</h2>
                 
-                <h3>6.1 Multi-stage Dockerfile</h3>
+                <h3>6.1 Dockerfile multi-etapa</h3>
 <pre class="language-docker"><code>FROM golang:1.25.6-alpine AS builder
 WORKDIR /src
 COPY . .
@@ -436,12 +436,12 @@ COPY --from=builder /out/server /app/server
 USER nobody:nobody
 ENTRYPOINT ["/app/server"]</code></pre>
 
-                <h3>6.2 Basic Docker Commands</h3>
+                <h3>6.2 Comandos Básicos de Docker</h3>
                 <div class="card-grid full-width">
-                    <div class="card"><div class="card-title">Build Image</div><pre class="language-bash"><code>docker build -t nethttp-server:local .</code></pre></div>
-                    <div class="card"><div class="card-title">Run Container</div><pre class="language-bash"><code>docker run -d --name nethttp-server -p 8080:8080 nethttp-server:local</code></pre></div>
-                    <div class="card"><div class="card-title">View Logs</div><pre class="language-bash"><code>docker logs -f nethttp-server</code></pre></div>
-                    <div class="card"><div class="card-title">Stop & Remove</div><pre class="language-bash"><code>docker stop nethttp-server && docker rm nethttp-server</code></pre></div>
+                    <div class="card"><div class="card-title">Construir Imagen</div><pre class="language-bash"><code>docker build -t nethttp-server:local .</code></pre></div>
+                    <div class="card"><div class="card-title">Ejecutar Contenedor</div><pre class="language-bash"><code>docker run -d --name nethttp-server -p 8080:8080 nethttp-server:local</code></pre></div>
+                    <div class="card"><div class="card-title">Ver Logs</div><pre class="language-bash"><code>docker logs -f nethttp-server</code></pre></div>
+                    <div class="card"><div class="card-title">Detener y Eliminar</div><pre class="language-bash"><code>docker stop nethttp-server && docker rm nethttp-server</code></pre></div>
                 </div>
             </section>
         </div>
@@ -452,7 +452,7 @@ ENTRYPOINT ["/app/server"]</code></pre>
             <div class="footer-links">
                 <a href="https://github.com/jeffotoni/go-nethttp-learn" target="_blank" class="footer-link-icon">
                     <svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
-                    Repository
+                    Repositorio
                 </a>
                 <a href="http://jeffotoni.com" target="_blank" class="footer-link-icon">
                     <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
@@ -463,7 +463,7 @@ ENTRYPOINT ["/app/server"]</code></pre>
                     LinkedIn
                 </a>
             </div>
-            <p>© 2026 Jefferson Otoni · Built for the Go Community</p>
+            <p>© 2026 Jefferson Otoni · Construido para la Comunidad de Go</p>
         </div>
     </footer>
 

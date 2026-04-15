@@ -1,4 +1,4 @@
-Leia em: **🇧🇷 Português** | [🇺🇸 English](README.md)
+Leia em: **🇧🇷 Português** | [🇺🇸 English](README.md) | [🇪🇸 Español](README_es.md)
 ---
 
 # Backend, HTTP e Arquitetura de APIs
@@ -28,6 +28,36 @@ Desenvolvido por **Jefferson Otoni Lima (Jeffotoni)**, Engenheiro de Software S�
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-jeffotoni-0A66C2?style=flat-square&logo=linkedin)](https://www.linkedin.com/in/jeffotoni)
 [![GitHub](https://img.shields.io/badge/GitHub-jeffotoni-181717?style=flat-square&logo=github)](https://github.com/jeffotoni)
 [![Site](https://img.shields.io/badge/Site-jeffotoni.com-10B981?style=flat-square)](http://jeffotoni.com)
+
+---
+
+## 🚀 Início Rápido
+
+Baixe o projeto e hospede esta documentação localmente em segundos.
+
+### 1. Clone o repositório
+```bash
+git clone https://github.com/jeffotoni/go-nethttp-learn
+cd go-nethttp-learn
+```
+
+### 2. Hospede a documentação localmente
+Escolha sua ferramenta favorita para servir o `index.html`, CSS e JS na porta 3000:
+
+**Usando Go (O jeito Gopher)**
+```bash
+go run static/main.go
+```
+
+**Usando Python**
+```bash
+python3 -m http.server 3000
+```
+
+**Usando Node.js (npx)**
+```bash
+npx serve .
+```
 
 ---
 
@@ -100,7 +130,7 @@ Desenvolvido por **Jefferson Otoni Lima (Jeffotoni)**, Engenheiro de Software S�
 | LinkedIn | [linkedin.com/in/jeffotoni](https://www.linkedin.com/in/jeffotoni) | Perfil profissional do autor |
 | GitHub | [github.com/jeffotoni](https://github.com/jeffotoni) | Repositórios e projetos do autor |
 | Roadmap Go | [github.com/jeffotoni/groadmap](https://github.com/jeffotoni/groadmap) | Visão macro de estudo e evolução em Go |
-| Site | [gonethttplearn](https://jeffotoni.github.io/gonethttplearn/) | Versão do repositório publicada como site |
+| Site | [go-nethttp-learn](https://jeffotoni.github.io/go-nethttp-learn/) | Versão do repositório publicada como site |
 
 ---
 
@@ -198,6 +228,9 @@ Desenvolvido por **Jefferson Otoni Lima (Jeffotoni)**, Engenheiro de Software S�
   - [4.4 Algumas possibilidades](#44-algumas-possibilidades)
   - [4.5 `ServeMux` com method pattern + `http.Server`](#45-servemux-com-method-pattern--httpserver)
   - [4.6 Quando usar `http.Handler`?](#46-quando-usar-httphandler)
+  - [4.7 Graceful Shutdown](#47-graceful-shutdown)
+  - [4.8 Testando handlers com `httptest`](#48-testando-handlers-com-httptest)
+  - [4.9 Dois servidores em portas diferentes com goroutines](#49-dois-servidores-em-portas-diferentes-com-goroutines)
 - [5. Server API](#5-server-api)
   - [5.0 helpers.go: funções compartilhadas](#50-helpergo--funções-compartilhadas)
   - [5.1 Padronizacao de resposta](#51-padronizacao-de-resposta)
@@ -2533,6 +2566,107 @@ Componentes do `httptest`:
 - `rec.Code`: status code escrito pelo handler
 - `rec.Body.String()`: body da resposta como string
 - `rec.Header()`: headers da resposta
+
+### 4.9 Dois servidores em portas diferentes com goroutines
+
+Use um `ServeMux` por porta e inicie cada servidor em sua própria goroutine.
+Para ver todas as variações de bloqueio/parada, consulte:
+- [`examples/10-dual-listenandserve-goroutines/README.md`](examples/10-dual-listenandserve-goroutines/README.md)
+- [`examples/10-dual-listenandserve-goroutines/README_pt.md`](examples/10-dual-listenandserve-goroutines/README_pt.md)
+
+Endpoints:
+- `:8080` -> `GET /api/v1/user`, `POST /api/v1/user`
+- `:3000` -> `GET /api/v1/mock/user`, `POST /api/v1/mock/user`
+
+Exemplo prático no repositório:
+- [`examples/10-dual-listenandserve-goroutines/main.go`](examples/10-dual-listenandserve-goroutines/main.go)
+- [`examples/10-dual-listenandserve-goroutines/main_test.go`](examples/10-dual-listenandserve-goroutines/main_test.go)
+- [`examples/10-dual-listenandserve-goroutines/README.md`](examples/10-dual-listenandserve-goroutines/README.md) (links de todos os cenários)
+- [`examples/10-dual-listenandserve-goroutines/README_pt.md`](examples/10-dual-listenandserve-goroutines/README_pt.md) (versão em português)
+- [`examples/10-1-dual-listenandserve-basic/main.go`](examples/10-1-dual-listenandserve-basic/main.go) (10.1 versão compacta)
+- [`examples/10-1-dual-listenandserve-basic/main_test.go`](examples/10-1-dual-listenandserve-basic/main_test.go)
+
+```go
+package main
+
+import (
+	"log"
+	"net/http"
+)
+
+// newMainMux registra as rotas da porta 8080.
+func newMainMux() *http.ServeMux {
+	mux := http.NewServeMux()
+	mux.HandleFunc("GET /api/v1/user", func(w http.ResponseWriter, r *http.Request) {
+		w.WriteHeader(http.StatusOK)
+		_, _ = w.Write([]byte(`{"message":"user read from :8080"}`))
+	})
+	mux.HandleFunc("POST /api/v1/user", func(w http.ResponseWriter, r *http.Request) {
+		w.WriteHeader(http.StatusCreated)
+		_, _ = w.Write([]byte(`{"message":"user created on :8080"}`))
+	})
+	return mux
+}
+
+// newMockMux registra as rotas da porta 3000.
+func newMockMux() *http.ServeMux {
+	mux := http.NewServeMux()
+	mux.HandleFunc("GET /api/v1/mock/user", func(w http.ResponseWriter, r *http.Request) {
+		w.WriteHeader(http.StatusOK)
+		_, _ = w.Write([]byte(`{"message":"mock user read from :3000"}`))
+	})
+	mux.HandleFunc("POST /api/v1/mock/user", func(w http.ResponseWriter, r *http.Request) {
+		w.WriteHeader(http.StatusCreated)
+		_, _ = w.Write([]byte(`{"message":"mock user created on :3000"}`))
+	})
+	return mux
+}
+
+// startServer inicia um servidor HTTP em goroutine.
+func startServer(srv *http.Server) {
+	go func() {
+		if err := srv.ListenAndServe(); err != nil && err != http.ErrServerClosed {
+			log.Fatalf("server %s error: %v", srv.Addr, err)
+		}
+	}()
+}
+
+// main sobe os dois servidores e mantém o processo bloqueado.
+func main() {
+	mainServer := &http.Server{Addr: ":8080", Handler: newMainMux()}
+	mockServer := &http.Server{Addr: ":3000", Handler: newMockMux()}
+
+	startServer(mainServer)
+	startServer(mockServer)
+	select {} // 01) Simples, direto, mas pouco controlável.
+	// done := make(chan struct{}); <-done // 02) Canal bloqueante explícito.
+	// var wg sync.WaitGroup; wg.Add(2); ...; wg.Wait() // 03) WaitGroup.
+	// stop := make(chan os.Signal, 1); signal.Notify(stop, os.Interrupt, syscall.SIGTERM); <-stop // 04) Canal de sinal.
+	// time.Sleep(10 * time.Minute) // 05) Janela fixa com sleep.
+	// ctx, cancel := context.WithCancel(context.Background()); <-ctx.Done(); cancel() // 06) Context cancel.
+	// for { time.Sleep(time.Hour) } // 07) Loop infinito.
+	// errCh := make(chan error, 2); if err := <-errCh; err != nil { ... } // 08) Grupo por canal de erro.
+	// ctx, cancel := context.WithCancel(context.Background()); select { case err := <-errCh: cancel() } // 09) Canal de erro + context.
+	// var mu sync.Mutex; mu.Lock(); mu.Lock() // 10) Deadlock com mutex (didático).
+	// runtime.Goexit() // 11) Finaliza apenas a goroutine main.
+	// var mu sync.Mutex; cond := sync.NewCond(&mu); mu.Lock(); cond.Wait() // 12) Espera com sync.Cond.
+	// ch := make(chan struct{}); for range ch {} // 13) Bloqueio com range em channel.
+	// fmt.Scanln() // 14) Bloqueio via stdin.
+	// go runMock(); runMain() // 15) Um bloqueante + um em goroutine.
+	// ticker := time.NewTicker(time.Hour); defer ticker.Stop(); for range ticker.C {} // 16) Ticker infinito.
+	// stop := make(chan struct{}); select { case <-stop: case err := <-errCh: _ = err } // 17) Select com múltiplos canais.
+}
+```
+
+Executar:
+
+```bash
+go run ./examples/10-dual-listenandserve-goroutines
+curl -i localhost:8080/api/v1/user
+curl -i -X POST localhost:8080/api/v1/user
+curl -i localhost:3000/api/v1/mock/user
+curl -i -X POST localhost:3000/api/v1/mock/user
+```
 
 
 ---

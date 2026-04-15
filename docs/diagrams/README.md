@@ -97,7 +97,7 @@ Desenvolvido por **Jefferson Otoni Lima (Jeffotoni)**, Engenheiro de Software S�
 | LinkedIn | [linkedin.com/in/jeffotoni](https://www.linkedin.com/in/jeffotoni) | Perfil profissional do autor |
 | GitHub | [github.com/jeffotoni](https://github.com/jeffotoni) | Repositórios e projetos do autor |
 | Roadmap Go | [github.com/jeffotoni/groadmap](https://github.com/jeffotoni/groadmap) | Visão macro de estudo e evolução em Go |
-| Site | [gonethttplearn](https://jeffotoni.github.io/gonethttplearn/) | Versão do repositório publicada como site |
+| Site | [go-nethttp-learn](https://jeffotoni.github.io/go-nethttp-learn/) | Versão do repositório publicada como site |
 
 ---
 
