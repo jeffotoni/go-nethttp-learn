@@ -125,10 +125,10 @@ npx serve .
 |---|---|---|
 | Podcast | [Diving into backend](https://youtu.be/uk1hwBAKGLc) | Reinforce the conceptual context of the material |
 | NotebookLM | [NotebookLM, Manual Chat](https://notebooklm.google.com/notebook/0421b1d1-9c27-415a-a3d2-bc83ce397b1f) | Ask, explore, and learn through chat, presentations, podcasts, and more |
+| Go Bootcamp | [Complete learning track](https://gobootcamp.jeffotoni.com/br/index.html) | Full Go course and track by Jeffotoni |
 | LinkedIn | [linkedin.com/in/jeffotoni](https://www.linkedin.com/in/jeffotoni) | Author's professional profile |
 | GitHub | [github.com/jeffotoni](https://github.com/jeffotoni) | Author's repositories and projects |
-| Go Roadmap | [github.com/jeffotoni/groadmap](https://github.com/jeffotoni/groadmap) | Macro view of study and evolution in Go |
-| Site | [go-nethttp-learn](https://jeffotoni.github.io/go-nethttp-learn/) | Version of the repository published as a website |
+| Site | [jeffotoni.com](https://jeffotoni.com) | Author's personal website and blog |
 
 ---
 
@@ -150,7 +150,7 @@ npx serve .
 
 ---
 
-## Jeffotoni References: Go and Architectureeferences: Go and Architecture
+## Jeffotoni References and Go and Architecture
 
 <details>
 <summary><strong>View all projects and repositories</strong></summary>
@@ -184,7 +184,7 @@ npx serve .
 - [Content Track](#content-track)
 - [Official Manual Resources](#official-manual-resources)
 - [Go References](#go-references)
-- [Jeffotoni References](#jeffotoni-references-go-and-architecture)
+- [Jeffotoni References and Go and Architecture](#jeffotoni-references-and-go-and-architecture)
 - [1. Context: Web Services, REST, and Protocols](#1-context-web-services-rest-and-protocols)
   - [Web Services Overview](#web-services-overview)
   - [Communication Diagrams](#communication-diagrams)
@@ -240,6 +240,12 @@ npx serve .
   - [5.7 Environment Variables](#57-environment-variables)
   - [5.8 CORS Middleware](#58-cors-middleware)
   - [5.9 Documentation with OpenAPI/Swagger](#59-documentation-with-openapiswagger)
+  - [5.10 Server with timeouts and graceful shutdown](#510-server-with-timeouts-and-graceful-shutdown)
+  - [5.11 Global middleware chain](#511-global-middleware-chain)
+  - [5.12 Middleware by group](#512-middleware-by-group)
+  - [5.13 Middleware per route with `Use(...)`](#513-middleware-per-route-with-use)
+  - [5.14 Static files and SPA fallback](#514-static-files-and-spa-fallback)
+  - [5.15 Query params and sanitization](#515-query-params-and-sanitization)
 - [6. Docker: Build and Run Local](#6-docker-build-and-run-local)
   - [6.1 Multi-stage Dockerfile (Alpine + Brazil timezone)](#61-multi-stage-dockerfile-alpine--brazil-timezone)
   - [6.2 Basic Docker Commands](#62-basic-docker-commands)
@@ -2694,6 +2700,12 @@ Section 5 solves this with a centralized response pattern (`writeJSON` and `writ
 | 5.7 Environment Variables |
 | 5.8 CORS Middleware |
 | 5.9 Documentation with OpenAPI/Swagger |
+| 5.10 Server with timeouts and graceful shutdown |
+| 5.11 Global middleware chain |
+| 5.12 Middleware by group |
+| 5.13 Middleware per route with `Use(...)` |
+| 5.14 Static files and SPA fallback |
+| 5.15 Query params and sanitization |
 
 ### 5.0 helpers.go: shared functions
 
@@ -3718,6 +3730,735 @@ Go generates the interfaces you implement, without any annotation and without an
 | Wants rigorous contract and code generation | `oapi-codegen` (contract-first) |
 | Wants to iterate fast with annotations | `swaggo/swag` (accepts pollution as tradeoff) |
 | Nice public documentation | Redoc via CDN over the same `openapi.yaml` |
+
+---
+
+### 5.10 Server with timeouts and graceful shutdown
+
+Until now, most examples used `http.ListenAndServe` directly. That is fine for the first contact, but a real backend usually needs explicit timeouts and graceful shutdown.
+
+This is the first transition from minimal server to production-minded server while still staying entirely inside the standard library.
+
+**What this example teaches:**
+- `http.Server` with explicit timeouts
+- `signal.NotifyContext` to capture `SIGINT` and `SIGTERM`
+- `Shutdown(ctx)` with a deadline
+- keeping handler registration simple with `ServeMux`
+
+**Example file:** `examples/10-server-graceful-shutdown/main.go`
+
+```go
+// -> curl -i localhost:8080/ping
+// -> CTRL+C to trigger graceful shutdown
+package main
+
+import (
+	"context"
+	"errors"
+	"log"
+	"net/http"
+	"os"
+	"os/signal"
+	"syscall"
+	"time"
+)
+
+func ping(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(http.StatusOK)
+	_, _ = w.Write([]byte(`{"status":"ok","message":"server alive"}`))
+}
+
+func newMux() *http.ServeMux {
+	mux := http.NewServeMux()
+	mux.HandleFunc("GET /ping", ping)
+	return mux
+}
+
+func newServer(addr string) *http.Server {
+	return &http.Server{
+		Addr:              addr,
+		Handler:           newMux(),
+		ReadHeaderTimeout: 5 * time.Second,
+		ReadTimeout:       10 * time.Second,
+		WriteTimeout:      10 * time.Second,
+		IdleTimeout:       60 * time.Second,
+	}
+}
+
+func main() {
+	srv := newServer(":8080")
+
+	stopCtx, stop := signal.NotifyContext(context.Background(), os.Interrupt, syscall.SIGTERM)
+	defer stop()
+
+	go func() {
+		<-stopCtx.Done()
+		log.Println("shutdown signal received")
+
+		ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+		defer cancel()
+
+		if err := srv.Shutdown(ctx); err != nil {
+			log.Printf("graceful shutdown failed: %v", err)
+		}
+	}()
+
+	log.Printf("server listening on %s", srv.Addr)
+	if err := srv.ListenAndServe(); err != nil && !errors.Is(err, http.ErrServerClosed) {
+		log.Fatal(err)
+	}
+}
+```
+
+Run:
+
+```bash
+cd examples/10-server-graceful-shutdown
+go run main.go
+go test ./...
+curl -i localhost:8080/ping
+```
+
+---
+
+### 5.11 Global middleware chain
+
+The first step should be global middleware around the entire `ServeMux`. This is the easiest way to understand the core pattern before scoping middleware by group or by route.
+
+**What this example teaches:**
+- `type Middleware func(http.Handler) http.Handler`
+- composition order with `chain(...)`
+- request ID injection
+- access logging
+- panic recovery returning controlled JSON
+
+**Example file:** `examples/11-middleware-global/main.go`
+
+```go
+// -> curl -i localhost:8080/api/v1/ping
+// -> curl -i localhost:8080/panic
+package main
+
+import (
+	"fmt"
+	"log"
+	"net/http"
+	"time"
+)
+
+type Middleware func(http.Handler) http.Handler
+
+type statusRecorder struct {
+	http.ResponseWriter
+	status int
+}
+
+func (r *statusRecorder) WriteHeader(status int) {
+	r.status = status
+	r.ResponseWriter.WriteHeader(status)
+}
+
+func chain(middlewares ...Middleware) Middleware {
+	return func(final http.Handler) http.Handler {
+		for i := len(middlewares) - 1; i >= 0; i-- {
+			final = middlewares[i](final)
+		}
+		return final
+	}
+}
+
+func requestIDMiddleware(next http.Handler) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		requestID := r.Header.Get("X-Request-Id")
+		if requestID == "" {
+			requestID = fmt.Sprintf("req-%d", time.Now().UnixNano())
+		}
+		w.Header().Set("X-Request-Id", requestID)
+		next.ServeHTTP(w, r)
+	})
+}
+
+func accessLogMiddleware(next http.Handler) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		rec := &statusRecorder{ResponseWriter: w, status: http.StatusOK}
+		started := time.Now()
+		next.ServeHTTP(rec, r)
+		log.Printf("method=%s path=%s status=%d took=%s", r.Method, r.URL.Path, rec.status, time.Since(started))
+	})
+}
+
+func recoverMiddleware(next http.Handler) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		defer func() {
+			if rec := recover(); rec != nil {
+				w.Header().Set("Content-Type", "application/json")
+				w.WriteHeader(http.StatusInternalServerError)
+				_, _ = w.Write([]byte(`{"error":"internal_server_error"}`))
+			}
+		}()
+		next.ServeHTTP(w, r)
+	})
+}
+
+func pingHandler(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+	_, _ = w.Write([]byte(`{"message":"pong"}`))
+}
+
+func panicHandler(w http.ResponseWriter, r *http.Request) {
+	panic("simulated panic")
+}
+
+func main() {
+	mux := http.NewServeMux()
+	mux.HandleFunc("GET /api/v1/ping", pingHandler)
+	mux.HandleFunc("GET /panic", panicHandler)
+
+	finalHandler := chain(
+		recoverMiddleware,
+		requestIDMiddleware,
+		accessLogMiddleware,
+	)(mux)
+
+	log.Fatal(http.ListenAndServe(":8080", finalHandler))
+}
+```
+
+Run:
+
+```bash
+cd examples/11-middleware-global
+go run main.go
+go test ./...
+curl -i localhost:8080/api/v1/ping
+curl -i localhost:8080/panic
+```
+
+---
+
+### 5.12 Middleware by group
+
+After understanding global middleware, the next step is scoping it by group. In real backends, public and private areas usually do not share the same policy.
+
+This pattern is still simple, but already teaches selective application:
+- public routes with common middleware
+- admin routes with the same common middleware plus authentication
+
+**Example file:** `examples/12-middleware-groups/main.go`
+
+```go
+// -> curl -i localhost:8080/public/ping
+// -> curl -i localhost:8080/admin/report
+// -> curl -i localhost:8080/admin/report -H "X-API-Key: secret"
+package main
+
+import (
+	"fmt"
+	"log"
+	"net/http"
+	"time"
+)
+
+type Middleware func(http.Handler) http.Handler
+
+type statusRecorder struct {
+	http.ResponseWriter
+	status int
+}
+
+func (r *statusRecorder) WriteHeader(status int) {
+	r.status = status
+	r.ResponseWriter.WriteHeader(status)
+}
+
+func chain(middlewares ...Middleware) Middleware {
+	return func(final http.Handler) http.Handler {
+		for i := len(middlewares) - 1; i >= 0; i-- {
+			final = middlewares[i](final)
+		}
+		return final
+	}
+}
+
+func requestIDMiddleware(next http.Handler) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		requestID := r.Header.Get("X-Request-Id")
+		if requestID == "" {
+			requestID = fmt.Sprintf("req-%d", time.Now().UnixNano())
+		}
+		w.Header().Set("X-Request-Id", requestID)
+		next.ServeHTTP(w, r)
+	})
+}
+
+func accessLogMiddleware(next http.Handler) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		rec := &statusRecorder{ResponseWriter: w, status: http.StatusOK}
+		started := time.Now()
+		next.ServeHTTP(rec, r)
+		log.Printf("method=%s path=%s status=%d took=%s", r.Method, r.URL.Path, rec.status, time.Since(started))
+	})
+}
+
+func apiKeyMiddleware(expected string) Middleware {
+	return func(next http.Handler) http.Handler {
+		return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+			if r.Header.Get("X-API-Key") != expected {
+				w.Header().Set("Content-Type", "application/json")
+				w.WriteHeader(http.StatusUnauthorized)
+				_, _ = w.Write([]byte(`{"error":"unauthorized"}`))
+				return
+			}
+			next.ServeHTTP(w, r)
+		})
+	}
+}
+
+func publicPing(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+	_, _ = w.Write([]byte(`{"scope":"public","message":"pong"}`))
+}
+
+func adminReport(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+	_, _ = w.Write([]byte(`{"scope":"admin","report":"ok"}`))
+}
+
+func main() {
+	publicMux := http.NewServeMux()
+	publicMux.HandleFunc("GET /ping", publicPing)
+
+	adminMux := http.NewServeMux()
+	adminMux.HandleFunc("GET /report", adminReport)
+
+	root := http.NewServeMux()
+	root.Handle("/public/", http.StripPrefix("/public", chain(requestIDMiddleware, accessLogMiddleware)(publicMux)))
+	root.Handle("/admin/", http.StripPrefix("/admin", chain(requestIDMiddleware, accessLogMiddleware, apiKeyMiddleware("secret"))(adminMux)))
+
+	log.Fatal(http.ListenAndServe(":8080", root))
+}
+```
+
+Run:
+
+```bash
+cd examples/12-middleware-groups
+go run main.go
+go test ./...
+curl -i localhost:8080/public/ping
+curl -i localhost:8080/admin/report
+curl -i localhost:8080/admin/report -H "X-API-Key: secret"
+```
+
+---
+
+### 5.13 Middleware per route with `Use(...)`
+
+Only after global and group middleware does it make sense to arrive at the route-oriented pattern. This is much closer to what real services use, because each route can declare its own policy explicitly.
+
+This is also the bridge to a production registration style:
+- common middleware stack
+- extra middleware only where needed
+- route registration already wrapped at the point of definition
+
+**Example file:** `examples/13-middleware-per-route/main.go`
+
+```go
+// -> curl -i localhost:8080/public/ping
+// -> curl -i localhost:8080/admin/report
+// -> curl -i localhost:8080/admin/report -H "X-API-Key: secret"
+// -> curl -i localhost:8080/panic
+package main
+
+import (
+	"fmt"
+	"log"
+	"net/http"
+	"time"
+)
+
+type Middleware func(http.Handler) http.Handler
+
+type statusRecorder struct {
+	http.ResponseWriter
+	status int
+}
+
+func (r *statusRecorder) WriteHeader(status int) {
+	r.status = status
+	r.ResponseWriter.WriteHeader(status)
+}
+
+func Use(middlewares ...Middleware) Middleware {
+	return func(final http.Handler) http.Handler {
+		for i := len(middlewares) - 1; i >= 0; i-- {
+			final = middlewares[i](final)
+		}
+		return final
+	}
+}
+
+func requestIDMiddleware(next http.Handler) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		requestID := r.Header.Get("X-Request-Id")
+		if requestID == "" {
+			requestID = fmt.Sprintf("req-%d", time.Now().UnixNano())
+		}
+		w.Header().Set("X-Request-Id", requestID)
+		next.ServeHTTP(w, r)
+	})
+}
+
+func accessLogMiddleware(next http.Handler) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		rec := &statusRecorder{ResponseWriter: w, status: http.StatusOK}
+		started := time.Now()
+		next.ServeHTTP(rec, r)
+		log.Printf("method=%s path=%s status=%d took=%s", r.Method, r.URL.Path, rec.status, time.Since(started))
+	})
+}
+
+func recoverMiddleware(next http.Handler) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		defer func() {
+			if rec := recover(); rec != nil {
+				w.Header().Set("Content-Type", "application/json")
+				w.WriteHeader(http.StatusInternalServerError)
+				_, _ = w.Write([]byte(`{"error":"internal_server_error"}`))
+			}
+		}()
+		next.ServeHTTP(w, r)
+	})
+}
+
+func apiKeyMiddleware(expected string) Middleware {
+	return func(next http.Handler) http.Handler {
+		return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+			if r.Header.Get("X-API-Key") != expected {
+				w.Header().Set("Content-Type", "application/json")
+				w.WriteHeader(http.StatusUnauthorized)
+				_, _ = w.Write([]byte(`{"error":"unauthorized"}`))
+				return
+			}
+			next.ServeHTTP(w, r)
+		})
+	}
+}
+
+func publicPing(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+	_, _ = w.Write([]byte(`{"scope":"public","message":"pong"}`))
+}
+
+func adminReport(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+	_, _ = w.Write([]byte(`{"scope":"admin","report":"ok"}`))
+}
+
+func panicHandler(w http.ResponseWriter, r *http.Request) {
+	panic("simulated panic")
+}
+
+func main() {
+	mux := http.NewServeMux()
+
+	mux.Handle("GET /public/ping", Use(
+		requestIDMiddleware,
+		accessLogMiddleware,
+	)(http.HandlerFunc(publicPing)))
+
+	mux.Handle("GET /admin/report", Use(
+		recoverMiddleware,
+		requestIDMiddleware,
+		accessLogMiddleware,
+		apiKeyMiddleware("secret"),
+	)(http.HandlerFunc(adminReport)))
+
+	mux.Handle("GET /panic", Use(
+		recoverMiddleware,
+		requestIDMiddleware,
+		accessLogMiddleware,
+	)(http.HandlerFunc(panicHandler)))
+
+	log.Fatal(http.ListenAndServe(":8080", mux))
+}
+```
+
+Run:
+
+```bash
+cd examples/13-middleware-per-route
+go run main.go
+go test ./...
+curl -i localhost:8080/public/ping
+curl -i localhost:8080/admin/report
+curl -i localhost:8080/admin/report -H "X-API-Key: secret"
+curl -i localhost:8080/panic
+```
+
+---
+
+### 5.14 Static files and SPA fallback
+
+Many backend services also serve a small frontend: documentation pages, admin panels, health dashboards, or a minimal SPA. This can be done with the standard library alone.
+
+This example shows a simple but practical pattern:
+- serve real files when they exist
+- return `404` for missing assets with extension
+- fall back to `index.html` for client-side routes
+
+**Example files:**
+- `examples/14-static-spa-serving/main.go`
+- `examples/14-static-spa-serving/web/index.html`
+- `examples/14-static-spa-serving/web/assets/app.js`
+
+```go
+// -> curl -i localhost:8080/app/
+// -> curl -i localhost:8080/app/assets/app.js
+// -> curl -i localhost:8080/app/dashboard
+package main
+
+import (
+	"net/http"
+	"os"
+	"path"
+	"path/filepath"
+	"strings"
+)
+
+func serveSPA(prefix, distDir string) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		rel := strings.TrimPrefix(r.URL.Path, prefix)
+		rel = strings.TrimPrefix(rel, "/")
+		rel = path.Clean("/" + rel)
+		rel = strings.TrimPrefix(rel, "/")
+
+		if strings.Contains(rel, "..") {
+			http.NotFound(w, r)
+			return
+		}
+
+		if rel == "" {
+			rel = "index.html"
+		}
+
+		fullPath := filepath.Join(distDir, filepath.FromSlash(rel))
+		if info, err := os.Stat(fullPath); err == nil && !info.IsDir() {
+			http.ServeFile(w, r, fullPath)
+			return
+		}
+
+		if filepath.Ext(rel) != "" {
+			http.NotFound(w, r)
+			return
+		}
+
+		http.ServeFile(w, r, filepath.Join(distDir, "index.html"))
+	})
+}
+
+func main() {
+	mux := http.NewServeMux()
+	mux.Handle("/app/", http.StripPrefix("/app", serveSPA("", "examples/14-static-spa-serving/web")))
+
+	http.ListenAndServe(":8080", mux)
+}
+```
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title>Go net/http SPA</title>
+</head>
+<body>
+  <h1>Go net/http SPA</h1>
+  <div id="app">Loaded by backend</div>
+  <script src="/app/assets/app.js"></script>
+</body>
+</html>
+```
+
+```js
+document.getElementById('app').textContent = 'frontend served by net/http';
+```
+
+Run:
+
+```bash
+cd examples/14-static-spa-serving
+go run main.go
+go test ./...
+curl -i localhost:8080/app/
+curl -i localhost:8080/app/assets/app.js
+curl -i localhost:8080/app/dashboard
+```
+
+---
+
+### 5.15 Query params and sanitization
+
+The next step after body validation is query validation. Real APIs quickly accumulate filters, pagination, date ranges, and enums. If you do not normalize and validate this input, handlers become fragile and hard to maintain.
+
+This example stays intentionally small, but already teaches the right mindset:
+- defaults
+- integer bounds
+- date format validation
+- enum validation
+- explicit error responses
+
+**Example file:** `examples/15-query-sanitization/main.go`
+
+```go
+// -> curl -i "localhost:8080/api/v1/logs?offset=0&limit=10&type=event&from=2026-03-01&to=2026-03-31"
+// -> curl -i "localhost:8080/api/v1/logs?limit=9999"
+package main
+
+import (
+	"encoding/json"
+	"fmt"
+	"net/http"
+	"strconv"
+	"strings"
+	"time"
+)
+
+type APIError struct {
+	Code    string `json:"code"`
+	Message string `json:"message"`
+}
+
+type LogFilters struct {
+	Offset int    `json:"offset"`
+	Limit  int    `json:"limit"`
+	Type   string `json:"type,omitempty"`
+	From   string `json:"from,omitempty"`
+	To     string `json:"to,omitempty"`
+}
+
+func writeJSON(w http.ResponseWriter, status int, payload any) {
+	b, err := json.Marshal(payload)
+	if err != nil {
+		w.Header().Set("Content-Type", "application/json")
+		w.WriteHeader(http.StatusInternalServerError)
+		_, _ = w.Write([]byte(`{"error":{"code":"internal_error","message":"json_encode_failed"}}`))
+		return
+	}
+
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(status)
+	_, _ = w.Write(b)
+}
+
+func writeError(w http.ResponseWriter, status int, code, message string) {
+	writeJSON(w, status, map[string]any{
+		"error": APIError{Code: code, Message: message},
+	})
+}
+
+func parseIntParam(raw string, def, min, max int) (int, error) {
+	raw = strings.TrimSpace(raw)
+	if raw == "" {
+		return def, nil
+	}
+	n, err := strconv.Atoi(raw)
+	if err != nil {
+		return 0, fmt.Errorf("must be an integer")
+	}
+	if n < min || n > max {
+		return 0, fmt.Errorf("must be between %d and %d", min, max)
+	}
+	return n, nil
+}
+
+func parseDateParam(raw string) (string, error) {
+	raw = strings.TrimSpace(raw)
+	if raw == "" {
+		return "", nil
+	}
+	if _, err := time.Parse("2006-01-02", raw); err != nil {
+		return "", fmt.Errorf("must use YYYY-MM-DD")
+	}
+	return raw, nil
+}
+
+func parseEnumParam(raw string, allowed ...string) (string, error) {
+	raw = strings.ToLower(strings.TrimSpace(raw))
+	if raw == "" {
+		return "", nil
+	}
+	for _, v := range allowed {
+		if raw == v {
+			return raw, nil
+		}
+	}
+	return "", fmt.Errorf("must be one of: %s", strings.Join(allowed, ", "))
+}
+
+func logsHandler(w http.ResponseWriter, r *http.Request) {
+	q := r.URL.Query()
+
+	offset, err := parseIntParam(q.Get("offset"), 0, 0, 100000)
+	if err != nil {
+		writeError(w, http.StatusBadRequest, "invalid_offset", err.Error())
+		return
+	}
+
+	limit, err := parseIntParam(q.Get("limit"), 50, 1, 500)
+	if err != nil {
+		writeError(w, http.StatusBadRequest, "invalid_limit", err.Error())
+		return
+	}
+
+	typeValue, err := parseEnumParam(q.Get("type"), "event", "status")
+	if err != nil {
+		writeError(w, http.StatusBadRequest, "invalid_type", err.Error())
+		return
+	}
+
+	from, err := parseDateParam(q.Get("from"))
+	if err != nil {
+		writeError(w, http.StatusBadRequest, "invalid_from", err.Error())
+		return
+	}
+
+	to, err := parseDateParam(q.Get("to"))
+	if err != nil {
+		writeError(w, http.StatusBadRequest, "invalid_to", err.Error())
+		return
+	}
+
+	writeJSON(w, http.StatusOK, map[string]any{
+		"filters": LogFilters{
+			Offset: offset,
+			Limit:  limit,
+			Type:   typeValue,
+			From:   from,
+			To:     to,
+		},
+		"data": []map[string]any{},
+	})
+}
+
+func main() {
+	mux := http.NewServeMux()
+	mux.HandleFunc("GET /api/v1/logs", logsHandler)
+
+	http.ListenAndServe(":8080", mux)
+}
+```
+
+Run:
+
+```bash
+cd examples/15-query-sanitization
+go run main.go
+go test ./...
+curl -i "localhost:8080/api/v1/logs?offset=0&limit=10&type=event&from=2026-03-01&to=2026-03-31"
+curl -i "localhost:8080/api/v1/logs?limit=9999"
+```
 
 ---
 

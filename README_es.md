@@ -125,10 +125,10 @@ npx serve .
 |---|---|---|
 | Podcast | [Diving into backend](https://youtu.be/uk1hwBAKGLc) | Reforzar el contexto conceptual del material |
 | NotebookLM | [NotebookLM, Manual Chat](https://notebooklm.google.com/notebook/0421b1d1-9c27-415a-a3d2-bc83ce397b1f) | Pregunta, explora y aprende a través de chat, presentaciones, podcasts y más |
+| Go Bootcamp | [Trilha completa de aprendizado](https://gobootcamp.jeffotoni.com/br/index.html) | Curso completo y trilha de Go por Jeffotoni |
 | LinkedIn | [linkedin.com/in/jeffotoni](https://www.linkedin.com/in/jeffotoni) | Perfil profesional del autor |
 | GitHub | [github.com/jeffotoni](https://github.com/jeffotoni) | Repositorios y proyectos del autor |
-| Go Roadmap | [github.com/jeffotoni/groadmap](https://github.com/jeffotoni/groadmap) | Visión macro de estudio y evolución en Go |
-| Sitio Web | [go-nethttp-learn](https://jeffotoni.github.io/go-nethttp-learn/) | Versión del repositorio publicada como sitio web |
+| Sitio Web | [jeffotoni.com](https://jeffotoni.com) | Sitio web personal y blog del autor |
 
 ---
 
