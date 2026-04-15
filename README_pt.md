@@ -123,7 +123,7 @@ npx serve .
 
 | Canal | Link | Objetivo |
 |---|---|---|
-| Podcast | [Mergulhando no backend](https://youtu.be/uk1hwBAKGLc) | Reforçar o contexto conceitual do material |
+| Podcast | [Mergulhando no backend](https://youtu.be/_E20rA8bWGw) | Reforçar o contexto conceitual do material |
 | NotebookLM | [NotebookLM, Chat do manual](https://notebooklm.google.com/notebook/c50bab62-0214-4b1a-9d53-78079ffc9fe6) | Pergunte, explore e aprenda via chat, apresentações, podcasts e mais |
 | Go Bootcamp | [Trilha completa de aprendizado](https://gobootcamp.jeffotoni.com/br/index.html) | Curso completo e trilha de Go por Jeffotoni |
 | LinkedIn | [linkedin.com/in/jeffotoni](https://www.linkedin.com/in/jeffotoni) | Perfil profissional do autor |
